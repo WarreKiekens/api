@@ -12,6 +12,9 @@ if (explode("/",$_SERVER["PATH_INFO"])[1] != "api") {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
+  // Debug
+  echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
+  
   // api/influencer/{id}
   if (isset($_GET["users"]) && $_GET["users"]!="") {
     $id = $_GET["users"];
@@ -22,7 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // api/influencer/{id}/posts/{id}
 }  
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {}
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  // Debug
+  echo (json_encode($_POST, JSON_PRETTY_PRINT));
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {}
 
