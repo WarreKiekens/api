@@ -1,12 +1,12 @@
 RewriteEngine On
 
-#DirectoryIndex api.php
-#RewriteRule ^api/test/(.*) /api.php?test=$1
+#DirectoryIndex index.php
+#RewriteRule ^api/test/(.*) /index.php?test=$1
 
-RewriteRule ^api/users/(.*)/posts/(.*)  /api.php?users=$1&posts=$2
-RewriteRule ^api/users/(.*)             /api.php?users=$1
+RewriteRule ^api/users/(.*)/posts/(.*)  /index.php?users=$1&posts=$2
+RewriteRule ^api/users/(.*)             /index.php?users=$1
 
-#RewriteRule ^api/users/(.*)/posts/(.*) /api.php?type=get&users=$1&posts=$2
-#RewriteRule ^api/users/(.*)/posts /api.php?type=post
+#RewriteRule ^api/users/(.*)/posts/(.*) /index.php?type=get&users=$1&posts=$2
+#RewriteRule ^api/users/(.*)/posts /index.php?type=post
 
-RewriteRule ^api/? api.php
+RewriteRule ^api/? index.php
