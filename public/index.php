@@ -1,5 +1,6 @@
 <?php
-include("../common/header.php");
+include_once("../common/header.php");
+include_once("../functions/get_details_influencer.php");
 
 
 // Check if path start with /api
@@ -12,8 +13,8 @@ if (explode("/",$_SERVER["PATH_INFO"])[1] != "api") {
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // api/influencer/{id}
-  if (isset($_GET["id"]) && $_GET["id"]!="") {
-    $id = $_GET["id"];
+  if (isset($_GET["users"]) && $_GET["users"]!="") {
+    $id = $_GET["users"];
   }
   
   // api/influencer/{id}/posts
