@@ -9,5 +9,10 @@ WORKDIR /source
 RUN git clone https://github.com/WarreKiekens/api.git
 
 WORKDIR api/
+RUN cp docker-sources/api.conf /etc/apache2/sites-available/
+RUN a2enmod rewrite
+RUN a2ensite api.conf
+RUN service apache2 reload 
+
 RUN chmod +x start.sh
 CMD ./start.sh
