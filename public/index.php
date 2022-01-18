@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   
   // api/influencer/{id}/posts
   
-  // api/influencer/{id}/post/{id}
+  // api/influencer/{id}/posts/{id}
 }  
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {}
