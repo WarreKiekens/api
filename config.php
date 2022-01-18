@@ -5,4 +5,5 @@
   $password = "warre";
 
   $conn = pg_connect("host=$host dbname=$dbname user=$user password=$password");
+  $GLOBALS["conn"] = $conn;
 ?>
