@@ -27,7 +27,8 @@ function get_query_data($query){
       );
       array_push($accounts, $account);
   }
-  echo json_encode($accounts);
+  return json_encode($accounts);
+   
 }
 
 ?>
