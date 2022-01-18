@@ -1,5 +1,5 @@
 <?php
-require_once('config.php'); // this sets up $db
+require_once('config.php');
 
 $rows = pg_query($conn, "SELECT * FROM influencer");
 
