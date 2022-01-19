@@ -36,12 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   
   // If token is set in header, check ExpireToken
   if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
-    echo "token";
+    echo "\ntoken\n";
     
     // Verify valid token
     
   } else {
-    echo "no token";
+    echo "\nno token\n";
     
     // Check if account credentials are valid
     include("../functions/auth_isvalid_account.php");
