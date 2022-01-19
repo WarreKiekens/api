@@ -13,7 +13,7 @@
     
     $result2 = pg_update($GLOBALS["conn"], $type, array("token" => $token, "tokenExpire" => $epoch), array("id" => $id));
     
-    if ($result && $result2) {
+    if ($result) {
       return $token;
     }
     return null;
