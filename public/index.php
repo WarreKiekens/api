@@ -1,7 +1,10 @@
 <?php
 include_once("../common/header.php");
 include_once("../common/response.php");
+
 include_once("../functions/get_details_influencer.php");
+include_once("../functions/auth_isvalid_account.php");
+include_once("../functions/auth_update_token.php");
 
 // Check if path start with /api
 if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
@@ -43,14 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   } else {
     
     // Check if account credentials are valid
-    include("../functions/auth_isvalid_account.php");
     $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
     if ($auth["valid"]) {
       
       // Update token
-      include("../functions/auth_update_token.php");
       $token = auth_update_token($auth["id"], $_POST["type"]);
       sendResponse(200, "Token successfully requested!", array("token"=>$token));
+      
     } else {
       sendResponse(401, "Account doesn't exist or credentials/username is wrong!", array("debug"=>$auth));
     }
