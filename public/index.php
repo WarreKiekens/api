@@ -16,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
   
   // api/influencer/{id}
-  if (isset($_GET["influencer"]) && $_GET["influencer"]!="") {
-    $id = $_GET["influencer"];
+  if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
+    $id = $_GET["influencers"];
     
     include_once("../functions/get_details_influencer.php");
     
