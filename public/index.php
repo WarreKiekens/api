@@ -45,7 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     // Check if account credentials are valid
     include("../functions/auth_isvalid_account.php");
-    $isValid = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
+    if (auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"])) {
+      echo "valid";
+    }
     echo (json_encode($isValid, JSON_PRETTY_PRINT));
     // Request new token      
 
