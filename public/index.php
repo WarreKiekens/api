@@ -1,7 +1,7 @@
 <?php
 include_once("../common/header.php");
+include_once("../common/sendResponse.php");
 include_once("../functions/get_details_influencer.php");
-
 
 // Check if path start with /api
 if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       // Update token
       include("../functions/auth_update_token.php");
       $token = auth_update_token($auth["id"], $_POST["type"]);
-      echo $token;
+      sendResponse(200, "Token successfully requested!", array("token"=>$token));
     } else {
       var_dump($auth);
     }
