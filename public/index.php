@@ -14,11 +14,35 @@ if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
   exit();
 }
 
+// Authentication
+// If token is set in header, check ExpireToken
+if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
+  echo "\ntoken\n";
+
+  // Verify valid token
+
+} else {
+
+  // Check if account credentials are valid
+  $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
+  if ($auth["valid"]) {
+
+    // Update token
+    $token = auth_update_token($auth["id"], $_POST["type"]);
+    sendResponse(200, "Token successfully requested!", array("token"=>$token));
+
+  } else {
+    sendResponse(401, "Account doesn't exist or credentials/username is wrong!", array("debug"=>$auth));
+  }
+
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // Debug
   echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
   
-  // api/influencer/{id}
+  // api/influencers/{id}
   if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
     $id = $_GET["influencers"];
     
@@ -27,37 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     var_dump(get_details_influencer($id));
   }
   
-  // api/influencer/{id}/posts
+  // api/influencers/{id}/posts
   
-  // api/influencer/{id}/posts/{id}
+  // api/influencers/{id}/posts/{id}
 }  
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   // Debug
   echo (json_encode($_POST, JSON_PRETTY_PRINT));
-  
-  
-  // If token is set in header, check ExpireToken
-  if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
-    echo "\ntoken\n";
-    
-    // Verify valid token
-    
-  } else {
-    
-    // Check if account credentials are valid
-    $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
-    if ($auth["valid"]) {
-      
-      // Update token
-      $token = auth_update_token($auth["id"], $_POST["type"]);
-      sendResponse(200, "Token successfully requested!", array("token"=>$token));
-      
-    } else {
-      sendResponse(401, "Account doesn't exist or credentials/username is wrong!", array("debug"=>$auth));
-    }
-
-  }
+ 
   
   // api/login Body:[type(influencer,stad), name, password] Headers:[]
   
