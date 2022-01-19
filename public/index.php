@@ -20,6 +20,9 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   echo "\ntoken\n";
 
   // Verify valid token
+  $token = $_SERVER["HTTP_AUTHORIZATION"];
+  $auth = auth_isvalid_token($token);
+  echo $auth;
 
 } else {
 
