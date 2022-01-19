@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $token = auth_update_token($auth["id"], $_POST["type"]);
       sendResponse(200, "Token successfully requested!", array("token"=>$token));
     } else {
-      sendResponse(401, "Account doesnt exist!", array("debug"=>$auth));
+      sendResponse(401, "Account doesn't exist or credentials/username is wrong!", array("debug"=>$auth));
     }
 
   }
