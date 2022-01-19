@@ -1,5 +1,7 @@
 RewriteEngine On
 
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 #DirectoryIndex index.php
 #RewriteRule ^api/test/(.*) /index.php?test=$1
 
