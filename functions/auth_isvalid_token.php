@@ -11,7 +11,7 @@
     if ($data["count"] === "1") {
       return array("valid" => true);
     }
-    
+    // TODO HERE
     // Check stad
     $query = "SELECT count(*) FROM $type WHERE gebruikersnaam = '$username' and wachtwoord = '$password';";
     $data = get_query_data($query);
