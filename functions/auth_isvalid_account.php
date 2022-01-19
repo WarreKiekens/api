@@ -4,7 +4,7 @@
   function auth_isvalid_account($username, $password, $type){
     include("../common/get_query_data.php");
     
-    $query = "SELECT $username, $password from $type;";
+    $query = "SELECT COUNT(*) FROM $type WHERE gebruikersnaam = '$username' and password = '$password';";
     $data = get_query_data($query);
     
     $result = array();
