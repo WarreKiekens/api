@@ -18,6 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // api/influencer/{id}
   if (isset($_GET["influencer"]) && $_GET["influencer"]!="") {
     $id = $_GET["influencer"];
+    
+    include_once("../functions/get_details_influencer.php");
+    
+    var_dump(get_details_influencer($id));
   }
   
   // api/influencer/{id}/posts
