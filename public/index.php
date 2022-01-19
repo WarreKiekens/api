@@ -4,10 +4,10 @@ include_once("../functions/get_details_influencer.php");
 
 
 // Check if path start with /api
-if (explode("/",$_SERVER["PATH_INFO"])[1] != "api") {
+if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
   echo "Wrong path<br>";
   var_dump($_SERVER);
-  var_dump(explode("/",$_SERVER["PATH_INFO"]));
+  var_dump(explode("/",$_SERVER["REDIRECT_URL"]));
   exit();
 }
 
