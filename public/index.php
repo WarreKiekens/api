@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       // Update token
       include("../functions/auth_update_token.php");
       $token = auth_update_token($auth["id"], $_POST["type"]);
+      echo $token;
     } else {
       var_dump($auth);
     }
