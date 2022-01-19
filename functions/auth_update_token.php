@@ -12,7 +12,7 @@
     include("../common/get_query_data.php")
     $epoch = get_query_data("select extract(epoch from now()) as epoch;");
     
-    $result2 = pg_update($GLOBALS["conn"], $type, array("token" => $token, "tokenExpire" => $epoch), array("id" => $id));
+    //$result2 = pg_update($GLOBALS["conn"], $type, array("token" => $token, "tokenExpire" => $epoch), array("id" => $id));
     
     if ($result) {
       return $token;
