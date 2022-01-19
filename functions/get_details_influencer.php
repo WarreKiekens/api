@@ -6,6 +6,6 @@
     
     $query = "SELECT voornaam,familienaam,geslacht FROM Influencer where id = $id";
     $data = get_query_data($query);
-    return var_dump($data);
+    return $data;
   };
 ?>
