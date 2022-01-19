@@ -45,11 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     // Check if account credentials are valid
     include("../functions/auth_isvalid_account.php");
-    if (auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"])) {
-      echo "valid";
+    $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
+    if ($auth["valid"]) {
+      
+      // Generate new token + insert into db + send request with new token
+      include("../functions/auth_update_token.php");
+      $token = auth_update_token($auth["id"], $_POST["type"]);
     }
-    echo (json_encode($isValid, JSON_PRETTY_PRINT));
-    // Request new token      
 
   }
   
