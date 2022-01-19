@@ -4,6 +4,9 @@
     $rows = pg_query($GLOBALS["conn"], $query);
     $result = pg_fetch_all($rows);
 
-    return json_encode($result, JSON_PRETTY_PRINT);
+    if (count($result) == 1) {
+      $result = $result[0];
+    }
+    return $result;
   }
 ?>
