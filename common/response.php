@@ -1,8 +1,9 @@
 <?php
-/*
- function for sending response to users
-*/
-function sendResponse($resp_code,$data,$message){
-    echo json_encode(array('code'=>$resp_code,'message'=>$message,'data'=>$data));
+function sendResponse($resp_code, $message, $data){
+    echo json_encode(array(
+     'code'=>$resp_code,
+     'message'=>$message,
+     'data'=>$data
+    ));
 }
 ?>
