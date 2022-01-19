@@ -48,9 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
     if ($auth["valid"]) {
       
-      // Generate new token + insert into db + send request with new token
+      // Update token
       include("../functions/auth_update_token.php");
       $token = auth_update_token($auth["id"], $_POST["type"]);
+    } else {
+      var_dump($auth);
     }
 
   }
