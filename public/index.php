@@ -41,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Verify valid token
     
   } else {
-    echo "\nno token\n";
     
     // Check if account credentials are valid
     include("../functions/auth_isvalid_account.php");
@@ -53,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $token = auth_update_token($auth["id"], $_POST["type"]);
       sendResponse(200, "Token successfully requested!", array("token"=>$token));
     } else {
-      var_dump($auth);
+      sendResponse(401, "Account doesnt exist!", array("debug"=>$auth));
     }
 
   }
