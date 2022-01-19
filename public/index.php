@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   
   
   // If token is set in header, check ExpireToken
-  if (isset($_SERVER["HTTP_AUTHORIZATION"])) {
+  if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
     echo "token";
     
     // Verify valid token
