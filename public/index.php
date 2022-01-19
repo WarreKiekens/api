@@ -1,6 +1,6 @@
 <?php
 include_once("../common/header.php");
-include_once("../common/sendResponse.php");
+include_once("../common/response.php");
 include_once("../functions/get_details_influencer.php");
 
 // Check if path start with /api
