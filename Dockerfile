@@ -12,6 +12,7 @@ WORKDIR api/
 RUN cp docker-sources/api.conf /etc/apache2/sites-available/
 RUN a2enmod rewrite
 RUN a2ensite api.conf
+RUN echo "Listen 8080" >> /etc/apache2/ports.conf
 RUN service apache2 restart
 
 RUN chmod +x start.sh
