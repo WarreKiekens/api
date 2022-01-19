@@ -7,7 +7,12 @@
     $token = bin2hex(random_bytes(64));
     
     $result = pg_update($GLOBALS["conn"], $type, array("token" => $token), array("id" => $id));
-    //$result = pg_fetch_all($rows);
+    
+    // Get current epoch time on psql server
+    include("../common/get_query_data.php")
+    $epoch = get_query_data("select extract(epoch from now()) as epoch;");
+    
+    $result2 = pg_update($GLOBALS["conn"], $type, array("token" => $token, "tokenExpire" => $epoch), array("id" => $id));
     
     if ($result) {
       return $token;
