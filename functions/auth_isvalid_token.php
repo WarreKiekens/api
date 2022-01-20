@@ -15,40 +15,30 @@
         $token = $tokenString;
         
         // Validate existing token
-    
-        // Check influencer
-        $query = "SELECT count(*) as count FROM influencer WHERE token = '$token';";
-        $data = get_query_data($query);
+        
+        $parties = ["influencer", "stad"];
+        foreach ($parties as $party){
+          
+          $query = "SELECT count(*) as count FROM $party WHERE token = '$token';";
+          $data = get_query_data($query);
 
-        if ($data["count"] === "1") {
-          $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM influencer WHERE token = '$token';";
-          $time = get_query_data($query);
-          
-          // if token expired return non valid and maybe change all arrays to array("valid" => ..., "reason")
-          
-          // Calculate hours between expireTime and creationTime
-          $hours = (strtotime($time["expiretime"]) - strtotime($time["creationtime"]))/3600;
-          
-          if ($hours < $GLOBALS["expireAfterHours"]) {
-            // DEBUG: Token not expired
-            return array("valid" => true);
-          } else {
-            // Token expired
-            return array("valid" => false, "code" => 401, "message" => "Token has expired!", "data" => null);
+          if ($data["count"] === "1") {
+            $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM $party WHERE token = '$token';";
+            $time = get_query_data($query);
+
+            // Calculate hours between expireTime and creationTime
+            $hours = (strtotime($time["expiretime"]) - strtotime($time["creationtime"]))/3600;
+
+            if ($hours < $GLOBALS["expireAfterHours"]) {
+              // Token not expired
+              return array("valid" => true);
+            } else {
+              // Token expired
+              return array("valid" => false, "code" => 401, "message" => "Token has expired!", "data" => null);
+            }
           }
-          
-          
+           
         }
-
-        ////////////////
-        // Check stad
-        $query = "SELECT count(*) FROM stad WHERE gebruikersnaam = '$username' and wachtwoord = '$password';";
-        $data = get_query_data($query);
-
-        if ($data["count"] === "1") {
-          return array("valid" => true);
-        }
-        ////////////////
         
         return array("valid" => false, "code" => 401, "message" => "Unknown token provided!", "data" => null);
         
