@@ -30,11 +30,11 @@
           $hours = (strtotime($time["expiretime"]) - strtotime($time["creationtime"]))/3600;
           
           if ($hours < $GLOBALS["expireAfterHours"]) {
-            // Token not expired
+            // DEBUG: Token not expired
             return array("valid" => true);
           } else {
             // Token expired
-            return array("valid" => false);
+            return array("valid" => false, "code" => 401, "message" => "Token has expired!", "data" => null);
           }
           
           
@@ -53,6 +53,6 @@
       }
    
     }
-    return array("valid" => false);
+    return array("valid" => false, "code" => 401, "message" => "Unvalid token type!", "data" => null);
   };
 ?>
