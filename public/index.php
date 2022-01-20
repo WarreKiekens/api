@@ -1,9 +1,11 @@
 <?php
 include_once("../common/header.php");
 include_once("../common/response.php");
+include_once("../common/get_query_data.php");
 
 include_once("../functions/get_details_influencer.php");
 include_once("../functions/auth_isvalid_account.php");
+include_once("../functions/auth_isvalid_token.php");
 include_once("../functions/auth_update_token.php");
 
 // Check if path start with /api
