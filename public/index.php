@@ -35,7 +35,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
 
     // Update token
     $token = auth_update_token($auth["id"], $_POST["type"]);
-    sendResponse(200, "Token successfully requested!", array("token"=>$token));
+    sendResponse(200, "Token successfully requested!", $token);
 
   } else {
     sendResponse(401, "Account doesn't exist or credentials/username is wrong!", array("debug"=>$auth));
