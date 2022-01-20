@@ -50,7 +50,7 @@ include_once("../functions/get_details_influencer.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // Debug
-  echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
+  //echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
   
   // api/influencers/{id}
   if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
