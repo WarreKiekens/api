@@ -7,6 +7,6 @@ function sendResponse($resp_code, $message, $data){
     ));
     
     // Stop API after sending response
-    quit();
+    die();
 }
 ?>
