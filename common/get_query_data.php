@@ -9,4 +9,14 @@
     }
     return $result;
   }
+
+  function fetch_query_data($res){
+
+    $result = pg_fetch_all($res);
+
+    if (count($result) == 1) {
+      $result = $result[0];
+    }
+    return $result;
+  }
 ?>
