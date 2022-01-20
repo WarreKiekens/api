@@ -59,6 +59,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
     
     $details = get_details_influencer($id);
+    
+    if ($details == null) {
+      sendResponse(200, "Index out of reach!", $details);
+    }
     sendResponse(200, "Influencer successfully requested!", $details);
   }
   
