@@ -31,7 +31,12 @@
 
             if ($hours < $GLOBALS["expireAfterHours"]) {
               // Token not expired
-              return array("valid" => true);
+              
+              // Get id that matches with token
+              $query = "SELECT id FROM $party WHERE token = $1;";            
+              $id = fetch_query_params($query, array($token));
+              
+              return array("valid" => true, "id" => $id);
             } else {
               // Token expired
               return array("valid" => false, "code" => 401, "message" => "Token has expired!", "data" => null);
