@@ -3,7 +3,7 @@
 
   function get_details_influencer($id){
         
-    $query = "SELECT voornaam,familienaam,geslacht FROM Influencer where id = $id";
+    $query = "SELECT voornaam,familienaam,geslacht FROM Influencer where id = $1";
     $res = pg_query_params($GLOBALS["conn"], $query, array($id));
     $data = fetch_query_data($res);
     
