@@ -1,10 +1,15 @@
 <?php
 function sendResponse($resp_code, $message, $data){
-    echo json_encode(array(
+    $result = array(
      'code'=>$resp_code,
-     'message'=>$message,
-     'data'=>$data
-    ));
+     'message'=>$message
+    );
+    
+    if ($data != null) {
+        $result['data'] = $data;
+    }
+    
+    echo json_encode($result);
     
     // Stop API after sending response
     die();
