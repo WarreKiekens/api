@@ -5,5 +5,8 @@ function sendResponse($resp_code, $message, $data){
      'message'=>$message,
      'data'=>$data
     ));
+    
+    // Stop API after sending response
+    quit();
 }
 ?>
