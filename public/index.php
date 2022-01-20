@@ -43,6 +43,10 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
 }
 
 
+include_once("../functions/get_details_influencer.php");
+
+
+
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // Debug
   echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
@@ -50,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // api/influencers/{id}
   if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
     $id = $_GET["influencers"];
-    
-    include("../functions/get_details_influencer.php");
     
     var_dump(get_details_influencer($id));
   }
