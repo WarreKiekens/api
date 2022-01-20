@@ -38,7 +38,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
     sendResponse(200, "Token successfully requested!", $token);
 
   } else {
-    sendResponse(401, "Account doesn't exist or credentials/username is wrong!", array("debug"=>$auth));
+    sendResponse($auth["code"], $auth["message"], $auth["data"]);
   }
 
 }
