@@ -23,8 +23,9 @@
           //$data = get_query_data($query);
           
           $query = "SELECT count(*) as count FROM $1 WHERE token = $2;";
-          $data = pg_query_params($GLOBALS["conn"], $query, array($party, $token));
-
+          $res = pg_query_params($GLOBALS["conn"], $query, array($party, $token));
+          $data = fetch_query_data($res);
+          
           if ($data["count"] === "1") {
             $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM $party WHERE token = '$token';";
             $time = get_query_data($query);
