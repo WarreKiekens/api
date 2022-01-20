@@ -3,6 +3,11 @@
 
   function auth_isvalid_account($username, $password, $type){
     
+    // Prevent Sql Injections
+    $username = pg_escape_string($username);
+    $password = pg_escape_string($password);
+    $type = pg_escape_string($type);
+    
     $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = '$username' and wachtwoord = '$password';";
     $data = get_query_data($query);
     
