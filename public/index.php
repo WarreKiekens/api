@@ -3,7 +3,7 @@ include_once("../common/header.php");
 include_once("../common/response.php");
 include_once("../common/get_query_data.php");
 
-include_once("../functions/get_details_influencer.php");
+include_once("../functions/get_details_influencer.php"); // In future, probably needs to be moved to bottom due to performancy issues
 include_once("../functions/auth_isvalid_account.php");
 include_once("../functions/auth_isvalid_token.php");
 include_once("../functions/auth_update_token.php");
@@ -43,8 +43,6 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
 
 }
 
-
-include_once("../functions/get_details_influencer.php");
 
 
 
