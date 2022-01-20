@@ -25,8 +25,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   $auth = auth_isvalid_token($token);
   
   // Debug
-  sendResponse(200, "Token successfully verified!", array("debug"=>$auth));
-  quit();
+  //sendResponse(200, "Token verify status...!", array("debug"=>$auth));
 
 } else {
 
@@ -57,7 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
     $id = $_GET["influencers"];
     
-    var_dump(get_details_influencer($id));
+    $details = get_details_influencer($id);
+    sendResponse(200, "Influencer successfully requested!", $details);
   }
   
   // api/influencers/{id}/posts
