@@ -27,13 +27,16 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   if ($auth["valid"] == false) {
     sendResponse($auth["code"], $auth["message"], $auth["data"]);
   }
+  
+  // Set global id and type
+  $GLOBALS["id"] = $auth["id"];
+  $GLOBALS["type"] = $auth["type"];
+    
 } else {
 
   // Check if account credentials are valid
   $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
   if ($auth["valid"]) {
-    
-    $GLOBALS["id"] = $auth["id"];
 
     // Update token
     $token = auth_update_token($auth["id"], $_POST["type"]);
