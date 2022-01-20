@@ -19,11 +19,8 @@
         $parties = ["influencer", "stad"];
         foreach ($parties as $party){
           
-          //$query = "SELECT count(*) as count FROM $party WHERE token = '$token';";
-          //$data = get_query_data($query);
-          
-          $query = "SELECT count(*) as count FROM $1 WHERE token = $2;";
-          $res = pg_query_params($GLOBALS["conn"], $query, array($party, $token));
+          $query = "SELECT count(*) as count FROM $party WHERE token = $1";
+          $res = pg_query_params($GLOBALS["conn"], $query, array($token));
           $data = fetch_query_data($res);
           
           if ($data["count"] === "1") {
