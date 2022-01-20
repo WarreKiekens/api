@@ -23,6 +23,6 @@
       
       return array("valid" => true, "id" => $data["id"]);
     } 
-    return array("valid" => false, "id" => null);
+    return array("valid" => false, "code" => 401, "message" => "Account doesn't exist or credentials/username is wrong!", "data" => null);
   };
 ?>
