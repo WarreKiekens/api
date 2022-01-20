@@ -26,11 +26,18 @@
           
           // if token expired return non valid and maybe change all arrays to array("valid" => ..., "reason")
           
-          // Calculate time between expireTime and creationTime
-          $days = (strtotime($time["expireTime"]) - strtotime($time["creationTime"]))/86400;
+          // Calculate hours between expireTime and creationTime
+          $hours = (strtotime($time["expiretime"]) - strtotime($time["creationtime"]))/3600;
           
-          sendResponse(000, "Debug", array("debug"=>$time, "daysDiff" => $days));
-          return array("valid" => true);
+          if ($hours < $GLOBALS["expireAfterHours"]) {
+            // Token not expired
+            return array("valid" => true);
+          } else {
+            // Token expired
+            return array("valid" => false);
+          }
+          
+          
         }
 
         ////////////////
