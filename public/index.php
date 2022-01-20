@@ -26,6 +26,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   
   // Debug
   //sendResponse(200, "Token verify status...!", array("debug"=>$auth));
+  sendResponse(401, "Unauthorized: Bearer token is wrong or doesn't exist!", array("debug"=>$auth));
 
 } else {
 
