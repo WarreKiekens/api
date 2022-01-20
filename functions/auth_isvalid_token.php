@@ -34,9 +34,9 @@
               
               // Get id that matches with token
               $query = "SELECT id FROM $party WHERE token = $1;";            
-              $id = fetch_query_params($query, array($token));
+              $data = fetch_query_params($query, array($token));
               
-              return array("valid" => true, "id" => $id, "type" => $party);
+              return array("valid" => true, "id" => $data["id"], "type" => $party);
             } else {
               // Token expired
               return array("valid" => false, "code" => 401, "message" => "Token has expired!", "data" => null);
