@@ -24,10 +24,12 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   $token = $_SERVER["HTTP_AUTHORIZATION"];
   $auth = auth_isvalid_token($token);
   
-  // Debug
-  //sendResponse(200, "Token verify status...!", array("debug"=>$auth));
-  sendResponse(401, "Unauthorized: Bearer token is wrong or doesn't exist!", array("debug"=>$auth));
-
+  if ($auth["valid"] == true) {
+    // Debug
+    //sendResponse(200, "Token verify status...!", array("debug"=>$auth));
+  } else {
+    sendResponse(401, "Unauthorized: Bearer token is wrong or doesn't exist!", array("debug"=>$auth));
+  }
 } else {
 
   // Check if account credentials are valid
