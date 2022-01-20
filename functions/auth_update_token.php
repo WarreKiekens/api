@@ -10,7 +10,7 @@
     $res = pg_query("select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS') as now");
     $now = fetch_query_data($res);
     
-    $res = pq_query("select TO_CHAR(NOW() + interval '1 day', 'DD-MM-YYYY HH:MI:SS') as expire");
+    $res = pg_query("select TO_CHAR(NOW() + interval '1 day', 'DD-MM-YYYY HH:MI:SS') as expire");
     $expire = fetch_query_data($res);
     
     $result = pg_update($GLOBALS["conn"], $type, array("token" => $token, "expiretoken" => $now["now"]), array("id" => $id));
