@@ -12,31 +12,29 @@
       
       if (ctype_alnum($tokenString)) {
         // Valid Bearer
-      } else {
-        // Unvalid Bearer
+        $token = $tokenString;
+        
+        // Validate existing token
+    
+        // Check influencer
+        $query = "SELECT count(*) as count FROM influencer WHERE token = '$token';";
+        $data = get_query_data($query);
+
+        if ($data["count"] === "1") {
+          return array("valid" => true);
+        }
+
+        // Check stad
+        $query = "SELECT count(*) FROM stad WHERE gebruikersnaam = '$username' and wachtwoord = '$password';";
+        $data = get_query_data($query);
+
+        if ($data["count"] === "1") {
+          return array("valid" => true);
+        }
+        
       }
-      
+   
     }
-    
-    
-    // Validate existing token
-    
-    // Check influencer
-    $query = "SELECT count(*) as count FROM influencer WHERE token = '$token';";
-    $data = get_query_data($query);
-    
-    if ($data["count"] === "1") {
-      return array("valid" => true);
-    }
-    
-    // Check stad
-    $query = "SELECT count(*) FROM stad WHERE gebruikersnaam = '$username' and wachtwoord = '$password';";
-    $data = get_query_data($query);
-    
-    if ($data["count"] === "1") {
-      return array("valid" => true);
-    }
-    
     return array("valid" => false);
   };
 ?>
