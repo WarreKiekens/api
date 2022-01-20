@@ -50,6 +50,8 @@
         }
         ////////////////
         
+        return array("valid" => false, "code" => 401, "message" => "Unknown token provided!", "data" => null);
+        
       }
    
     }
