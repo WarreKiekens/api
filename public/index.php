@@ -19,12 +19,15 @@ if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
 // Authentication
 // If token is set in header, check ExpireToken
 if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
-  echo "\ntoken\n";
-
+  
   // Verify valid token
   $token = $_SERVER["HTTP_AUTHORIZATION"];
   $auth = auth_isvalid_token($token);
   var_dump($auth);
+  
+  // Debug
+  sendResponse(200, "Token successfully verified!", array("debug"=>$auth));
+  quit();
 
 } else {
 
