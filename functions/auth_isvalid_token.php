@@ -21,10 +21,15 @@
         $data = get_query_data($query);
 
         if ($data["count"] === "1") {
-          $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireold, expiretoken as expirenew FROM influencer WHERE token = '$token';";
+          $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM influencer WHERE token = '$token';";
           $time = get_query_data($query);
           
-          sendResponse(000, "Debug", array("debug"=>$time));
+          // if token expired return non valid and maybe change all arrays to array("valid" => ..., "reason")
+          
+          // Calculate time between expireTime and creationTime
+          $days = (strtotime($time["expireTime"]) - strtotime($time["creationTime"]))/86400;
+          
+          sendResponse(000, "Debug", array("debug"=>$time, "daysDiff" => $days));
           return array("valid" => true);
         }
 
