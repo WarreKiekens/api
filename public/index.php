@@ -54,6 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
     $id = $_GET["influencers"];
     
+    if (!is_numeric($id)){
+      sendResponse(422, "Unprocessable Entity, the type of given Entity isn't supported!", null);
+    }
+    
     $details = get_details_influencer($id);
     sendResponse(200, "Influencer successfully requested!", $details);
   }
