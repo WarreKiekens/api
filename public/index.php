@@ -32,6 +32,8 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   // Check if account credentials are valid
   $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
   if ($auth["valid"]) {
+    
+    $id = $auth["id"];
 
     // Update token
     $token = auth_update_token($auth["id"], $_POST["type"]);
@@ -42,8 +44,6 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   }
 
 }
-
-
 
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
