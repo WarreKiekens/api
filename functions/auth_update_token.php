@@ -15,6 +15,6 @@
     if ($result) {
       return array("token" => $token, "creationTime" => $now["now"]);
     }
-    return null;
+    return array("debug" => "PSQL statement couldn't be updated!");
   }
 ?>
