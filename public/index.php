@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   // Debug
-  echo (json_encode($_POST, JSON_PRETTY_PRINT));
+  //echo (json_encode($_POST, JSON_PRETTY_PRINT));
  
   
   // api/login Body:[type(influencer,stad), name, password] Headers:[]
