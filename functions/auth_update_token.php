@@ -13,7 +13,7 @@
     $result = pg_update($GLOBALS["conn"], $type, array("token" => $token, "expiretoken" => $now["now"]), array("id" => $id));
     
     if ($result) {
-      return array("token" => $token, "creationTime" => $now["now"], "expireTime" => $expire["expire"]);
+      return array("token" => $token, "creationtime" => $now["now"], "expiretime" => $expire["expire"]);
     }
     return array("debug" => "PSQL statement couldn't be updated!");
   }
