@@ -19,8 +19,11 @@
         $parties = ["influencer", "stad"];
         foreach ($parties as $party){
           
-          $query = "SELECT count(*) as count FROM $party WHERE token = '$token';";
-          $data = get_query_data($query);
+          //$query = "SELECT count(*) as count FROM $party WHERE token = '$token';";
+          //$data = get_query_data($query);
+          
+          $query = "SELECT count(*) as count FROM $1 WHERE token = $2;";
+          $data = pg_query_params($GLOBALS["conn"], $query, array($party, $token));
 
           if ($data["count"] === "1") {
             $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM $party WHERE token = '$token';";
