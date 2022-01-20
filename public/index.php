@@ -24,7 +24,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   // Verify valid token
   $token = $_SERVER["HTTP_AUTHORIZATION"];
   $auth = auth_isvalid_token($token);
-  echo $auth;
+  var_dump($auth);
 
 } else {
 
