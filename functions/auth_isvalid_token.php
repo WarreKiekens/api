@@ -19,18 +19,11 @@
         $parties = ["influencer", "stad"];
         foreach ($parties as $party){
           
-          $query = "SELECT count(*) as count FROM $party WHERE token = $1";
-          //$res = pg_query_params($GLOBALS["conn"], $query, array($token));
-          //$data = fetch_query_data($res);
-          
+          $query = "SELECT count(*) as count FROM $party WHERE token = $1";         
           $data = fetch_query_params($query, array($token));
-
           
           if ($data["count"] === "1") {
-            $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM $party WHERE token = $1;";
-            //$res = pg_query_params($GLOBALS["conn"], $query, array($token));
-            //$time = fetch_query_data($res);
-            
+            $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM $party WHERE token = $1;";            
             $time = fetch_query_params($query, array($token));
 
             // Calculate hours between expireTime and creationTime
