@@ -24,8 +24,8 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   $token = $_SERVER["HTTP_AUTHORIZATION"];
   $auth = auth_isvalid_token($token);
   
-  if ($auth["valid"] != true) {
-    sendResponse(401, "Unauthorized: Bearer token is wrong or doesn't exist!", array("debug"=>$auth));
+  if ($auth["valid"] == false) {
+    sendResponse($auth["code"], $auth["message"], $auth["data"]);
   }
 } else {
 
