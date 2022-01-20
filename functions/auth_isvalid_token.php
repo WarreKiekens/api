@@ -21,9 +21,14 @@
         $data = get_query_data($query);
 
         if ($data["count"] === "1") {
+          $query = "SELECT (select now()),expiretoken as expiretime FROM influencer WHERE token = '$token';";
+          $time = get_query_data($query);
+          
+          sendResponse(000, "Debug", array("debug"=>$time));
           return array("valid" => true);
         }
 
+        ////////////////
         // Check stad
         $query = "SELECT count(*) FROM stad WHERE gebruikersnaam = '$username' and wachtwoord = '$password';";
         $data = get_query_data($query);
@@ -31,6 +36,7 @@
         if ($data["count"] === "1") {
           return array("valid" => true);
         }
+        ////////////////
         
       }
    
