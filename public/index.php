@@ -12,7 +12,10 @@ include_once("../functions/get_details_influencers.php");
 include_once("../functions/get_details_influencer.php");
 include_once("../functions/get_details_influencer_posts.php");
 
-
+$rawBody = json_decode(file_get_contents("php://input"), true);
+if (count($rawBody) > 0) {
+  $_POST = $rawBody;
+}
 
 // Check if path start with /api
 if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
