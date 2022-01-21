@@ -40,8 +40,14 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
 
     // Update token
     $token = auth_update_token($auth["id"], $_POST["type"]);
-    sendResponse(200, "Token successfully requested!", $token);
-
+    
+    if ($token["valid"]) {
+      sendResponse(200, "Token successfully requested!", $token["data"]);
+    } else {
+      sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
+    }
+    
+    
   } else {
     sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
   }
