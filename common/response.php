@@ -1,5 +1,5 @@
 <?php
-function sendResponse($resp_code, $message, $data){
+function sendResponse($resp_code, $message, $data = null, $error = null){
     $result = array(
      'code'=>$resp_code,
      'message'=>$message
@@ -7,6 +7,11 @@ function sendResponse($resp_code, $message, $data){
     
     if ($data != null) {
         $result['data'] = $data;
+    }
+    
+    
+    if ($error != null) {
+        $result['error'] = $error;
     }
     
     echo json_encode($result);
