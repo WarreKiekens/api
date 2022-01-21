@@ -2,14 +2,10 @@ RewriteEngine On
 
 SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 
-#DirectoryIndex index.php
-#RewriteRule ^api/test/(.*) /index.php?test=$1
-
 RewriteRule ^api/influencers/(.*)/posts/(.*)  /index.php?influencers=$1&posts=$2
 RewriteRule ^api/influencers/(.*)/posts       /index.php?influencers=$1&posts
 RewriteRule ^api/influencers/(.*)             /index.php?influencers=$1
 
-#RewriteRule ^api/users/(.*)/posts/(.*) /index.php?type=get&users=$1&posts=$2
-#RewriteRule ^api/users/(.*)/posts /index.php?type=post
+RewriteRule ^api/cities/(.*)                  /index.php?cities=$1
 
 RewriteRule ^api/? index.php
