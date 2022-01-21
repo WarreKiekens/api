@@ -10,6 +10,7 @@ include_once("../functions/auth_update_token.php");
 // In future, probably needs to be moved to bottom due to performancy issues
 include_once("../functions/get_details_influencer.php");
 include_once("../functions/get_details_influencers.php");
+include_once("../functions/get_details_posts_influencer.php");
 
 
 
