@@ -6,7 +6,7 @@
     // Authorization
     // Everyone can access this resource
             
-    $res = pg_query("SELECT id,naam,postcode stad;");
+    $res = pg_query("SELECT id,naam,postcode FROM stad ORDER BY id");
     $data = fetch_query_data($res);
     
     if ($data == null) {
