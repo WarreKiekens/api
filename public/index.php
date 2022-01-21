@@ -13,6 +13,7 @@ include_once("../functions/get_details_influencer.php");
 include_once("../functions/get_details_influencer_posts.php");
 
 include_once("../functions/get_details_cities.php");
+include_once("../functions/get_details_city.php");
 
 $rawBody = json_decode(file_get_contents("php://input"), true);
 if (count($rawBody) > 0) {
@@ -123,6 +124,19 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   
   // /api/cities...
   if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
+    
+    // /api/cities/{id}
+    if (isset($_GET["cities"]) && $_GET["cities"] != "") {
+      $cityId = $_GET["cities"];
+
+      $details = get_details_city($cityId);
+
+      if ($details["valid"]) {
+        sendResponse(200, "City successfully requested!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      }    
+    }
     
     // /api/cities
     $details = get_details_cities();
