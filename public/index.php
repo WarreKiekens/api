@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if ($details["valid"]) {
       sendResponse(200, "Influencer successfully requested!", $details["data"]);
     } else {
-      sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
     
     
