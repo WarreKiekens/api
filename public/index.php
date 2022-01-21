@@ -8,9 +8,9 @@ include_once("../functions/auth_isvalid_token.php");
 include_once("../functions/auth_update_token.php");
 
 // In future, probably needs to be moved to bottom due to performancy issues
-include_once("../functions/get_details_influencer.php");
 include_once("../functions/get_details_influencers.php");
-include_once("../functions/get_details_posts_influencer.php");
+include_once("../functions/get_details_influencer.php");
+include_once("../functions/get_details_influencer_posts.php");
 
 
 
@@ -72,14 +72,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"]) && $_GET["influencers"] != "") {
       $influencerId = $_GET["influencers"];
       $postId = $_GET["posts"];
-      //$details = get_details_posts_influencer();
+      //$details = get_details_influencer_post.php();
       
     }
   
     // /api/influencers/{id}/posts 
     if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"])) {
       $influencerId = $_GET["influencers"];
-      $details = get_details_posts_influencer();
+      $details = get_details_influencer_posts.php();
       
       if ($details["valid"]) {
         sendResponse(200, "Posts successfully requested!", $details["data"]);
