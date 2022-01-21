@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // /api/influencers/{id}/posts 
     if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"])) {
       $influencerId = $_GET["influencers"];
-      $details = get_details_influencer_posts();
+      $details = get_details_influencer_posts($influencerId);
       
       if ($details["valid"]) {
         sendResponse(200, "Posts successfully requested!", $details["data"]);
