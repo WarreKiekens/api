@@ -62,17 +62,36 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // Debug
-  //echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
+  //echo (json_encode($_GET, JSON_PRETTY_PRINT));  
   
   // /api/influencers...
   if (strpos($_SERVER["REQUEST_URI"], "/api/influencers") === 0) {
      
+    // /api/influencers/{id}/posts/{id}
+    if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"]) && $_GET["influencers"] != "") {
+      $influencerId = $_GET["influencers"];
+      $postId = $_GET["posts"];
+      //$details = get_details_posts_influencer();
+      
+    }
+  
+    // /api/influencers/{id}/posts 
+    if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"])) {
+      $influencerId = $_GET["influencers"];
+      $details = get_details_posts_influencer();
+      
+      if ($details["valid"]) {
+        sendResponse(200, "Posts successfully requested!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      } 
+    }
   
     // /api/influencers/{id}
-    if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
-      $id = $_GET["influencers"];
+    if (isset($_GET["influencers"]) && $_GET["influencers"] != "") {
+      $influencerId = $_GET["influencers"];
 
-      $details = get_details_influencer($id);
+      $details = get_details_influencer($influencerId);
 
       if ($details["valid"]) {
         sendResponse(200, "Influencer successfully requested!", $details["data"]);
@@ -80,10 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
       }    
     }
-    
-    // /api/influencers/{id}/posts 
-  
-    // /api/influencers/{id}/posts/{id}
     
     // /api/influencers
     $details = get_details_influencers();
