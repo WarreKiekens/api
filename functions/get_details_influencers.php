@@ -4,7 +4,7 @@
   function get_details_influencers(){
     
     // Authorization
-    if (!in_array($GLOBALS["type"], array("stad"))) {
+    if (!in_array($GLOBALS["account_type"], array("stad"))) {
       return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
             
