@@ -3,7 +3,9 @@
   //$host = "192.168.56.101";
 
   $dbname = "application";
+
   $user = "application";
+
   $password = "warre";
   //$password = "application";
   
