@@ -8,7 +8,7 @@
     }
     
     // Authorization
-    if (!in_array($GLOBALS["type"], array("stad")){
+    if (!in_array($GLOBALS["type"], array("stad"))){
       if ($GLOBALS["id"] != $id) {
         return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
       }
