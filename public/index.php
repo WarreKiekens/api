@@ -63,10 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     
     $details = get_details_influencer($id);
     
-    if ($details == null) {
-      sendResponse(200, "Index out of reach!", $details);
+    if ($details["valid"]) {
+      sendResponse(200, "Influencer successfully requested!", $details["data"]);
+    } else {
+      sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
     }
-    sendResponse(200, "Influencer successfully requested!", $details);
+    
+    
   }
   
   // api/influencers/{id}/posts
