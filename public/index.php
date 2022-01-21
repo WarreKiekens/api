@@ -66,14 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   
   // /api/influencers...
   if (strpos($_SERVER["REQUEST_URI"], "/api/influencers") === 0) {
-    $details = get_details_influencers();
-    
-    if ($details["valid"]) {
-      sendResponse(200, "Influencers successfully requested!", $details["data"]);
-    } else {
-      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
-    }
-  
+     
   
     // /api/influencers/{id}
     if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
@@ -91,6 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // /api/influencers/{id}/posts 
   
     // /api/influencers/{id}/posts/{id}
+    
+    // /api/influencers
+    $details = get_details_influencers();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Influencers successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
   }
   
 
