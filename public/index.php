@@ -44,7 +44,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
     if ($token["valid"]) {
       sendResponse(200, "Token successfully requested!", $token["data"]);
     } else {
-      sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
+      sendResponse($token["code"], $token["message"], $token["data"], $token["error"]);
     }
     
     
