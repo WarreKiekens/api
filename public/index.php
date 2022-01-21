@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   //echo (json_encode($_GET, JSON_PRETTY_PRINT));  
   
   if (strpos($_SERVER["REQUEST_URI"], "/api/id") === 0) {
-    sendResponse(200, "Id successfully requested!", $GLOBALS["account_id"])
+    sendResponse(200, "Id successfully requested!", $GLOBALS["account_id"]);
   }
   
   // /api/influencers...
