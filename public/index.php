@@ -25,7 +25,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   $auth = auth_isvalid_token($token);
   
   if ($auth["valid"] == false) {
-    sendResponse($auth["code"], $auth["message"], $auth["data"]);
+    sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
   }
   
   // Set global id and type
