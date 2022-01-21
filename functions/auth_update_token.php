@@ -16,8 +16,8 @@
     $result = pg_update($GLOBALS["conn"], $type, array("token" => $token, "expiretoken" => $now["now"]), array("id" => $id));
     
     if ($result) {
-      return array("valid" => true, $data => array("token" => $token, "creationtime" => $now["now"], "expiretime" => $expire["expire"]));
+      return array("valid" => true, "data" => array("token" => $token, "creationtime" => $now["now"], "expiretime" => $expire["expire"]));
     }
-    return array("valid" => false, $message => "PSQL statement couldn't be updated!", $error => "InternalError");
+    return array("valid" => false, "message" => "PSQL statement couldn't be updated!", "error" => "InternalError");
   }
 ?>
