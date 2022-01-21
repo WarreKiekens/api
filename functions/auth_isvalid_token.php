@@ -45,11 +45,11 @@
            
         }
         
-        return array("valid" => false, "code" => 401, "message" => "Unknown token provided!");
+        return array("valid" => false, "code" => 401, "message" => "Unknown token provided!", "error" => "AuthWrong");
         
       }
    
     }
-    return array("valid" => false, "code" => 401, "message" => "Unvalid token type!");
+    return array("valid" => false, "code" => 401, "message" => "Unvalid token type!", "error" => "AuthUnvalid");
   };
 ?>
