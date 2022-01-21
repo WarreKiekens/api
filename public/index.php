@@ -3,10 +3,15 @@ include_once("../common/header.php");
 include_once("../common/response.php");
 include_once("../common/get_query_data.php");
 
-include_once("../functions/get_details_influencer.php"); // In future, probably needs to be moved to bottom due to performancy issues
 include_once("../functions/auth_isvalid_account.php");
 include_once("../functions/auth_isvalid_token.php");
 include_once("../functions/auth_update_token.php");
+
+// In future, probably needs to be moved to bottom due to performancy issues
+include_once("../functions/get_details_influencer.php");
+include_once("../functions/get_details_influencers.php");
+
+
 
 // Check if path start with /api
 if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
@@ -58,6 +63,17 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // Debug
   //echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
+  
+  // api/influencers...
+  if ($SERVER["REQUEST_URI"] == "api/influencers") {
+    $details = get_details_influencers();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Influencers successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
+  }
   
   // api/influencers/{id}
   if (isset($_GET["influencers"]) && $_GET["influencers"]!="") {
