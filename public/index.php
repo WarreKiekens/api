@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   //echo (json_encode($_GET, JSON_PRETTY_PRINT)); 
   
   // api/influencers...
-  if ($SERVER["REQUEST_URI"] == "api/influencers") {
+  if ($_SERVER["REQUEST_URI"] == "/api/influencers") {
     $details = get_details_influencers();
     
     if ($details["valid"]) {
