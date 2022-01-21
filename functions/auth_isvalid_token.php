@@ -39,17 +39,17 @@
               return array("valid" => true, "id" => $data["id"], "type" => $party);
             } else {
               // Token expired
-              return array("valid" => false, "code" => 401, "message" => "Token has expired!", "error" => "AuthExpire");
+              return array("valid" => false, "code" => 401, "message" => "Token has expired!", "error" => "AuthTokenExpire");
             }
           }
            
         }
         
-        return array("valid" => false, "code" => 401, "message" => "Unknown token provided!", "error" => "AuthWrong");
+        return array("valid" => false, "code" => 401, "message" => "Unknown token provided!", "error" => "AuthTokenWrong");
         
       }
    
     }
-    return array("valid" => false, "code" => 401, "message" => "Unvalid token type!", "error" => "AuthUnvalid");
+    return array("valid" => false, "code" => 401, "message" => "Unvalid token type!", "error" => "AuthTokenUnvalid");
   };
 ?>
