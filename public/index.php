@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   if (strpos($_SERVER["REQUEST_URI"], "/api/influencers") === 0) {
      
     // /api/influencers/{id}/posts/{id}
-    if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"]) && $_GET["influencers"] != "") {
+    if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"]) && $_GET["posts"] != "") {
       $influencerId = $_GET["influencers"];
       $postId = $_GET["posts"];
       $details = get_details_influencer_post($influencerId, $postId);
