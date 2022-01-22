@@ -16,7 +16,12 @@
     } 
     
     // Convert categories into proper array
-    $data["categories"] = explode(";", $data["categories"]);
+    $index = 0;
+    foreach ($data as $influencer){ 
+      $data[$index] = explode(";", $data["categories"]);
+      $index++; 
+    }
+    
     
     return array("valid" => true, "data" => $data);
   };
