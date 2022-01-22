@@ -9,7 +9,7 @@
     
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad"))) {
-      if ($GLOBALS["account_id"] != $infuencerId) {
+      if ($GLOBALS["account_id"] != $influencerId) {
         return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
       }
     }
