@@ -15,9 +15,9 @@
     $query = "SELECT * FROM post WHERE influencerid = $1";
     $data = fetch_query_params($query, array($influencerId));
     
-    if ($data == null) {
-      return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
-    } 
+    //if ($data == null) {
+    //  return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
+    //} 
     return array("valid" => true, "data" => $data);
   };
 ?>
