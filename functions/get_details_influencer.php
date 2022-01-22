@@ -4,13 +4,13 @@
   function get_details_influencer($id){
         
     if (!is_numeric($id)){
-      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!!", "error" => "UnprocessableEntity");
+      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
     
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad"))){
       if ($GLOBALS["account_id"] != $id) {
-        return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
+        return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
       }
     }
         
