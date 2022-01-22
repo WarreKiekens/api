@@ -18,7 +18,7 @@
     // Convert categories into proper array
     $index = 0;
     foreach ($data as $influencer){ 
-      $data[$index] = explode(";", $data["categories"]);
+      $data[$index]["categories"] = explode(";", $influencer["categories"]);
       $index++; 
     }
     
