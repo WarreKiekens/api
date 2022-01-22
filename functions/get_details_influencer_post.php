@@ -1,7 +1,7 @@
 <?php
   include_once("../config.php");
 
-  function get_details_influencer_posts($influencerId, $postId){
+  function get_details_influencer_post($influencerId, $postId){
     
     if (!is_numeric($influencerId) or !is_numeric($postId)){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!!", "error" => "UnprocessableEntity");
