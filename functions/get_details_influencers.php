@@ -8,7 +8,7 @@
       return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
             
-    $res = pg_query("SELECT id,voornaam,familienaam,geslacht FROM Influencer ORDER BY ID;");
+    $res = pg_query("SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,badge,aantalpunten FROM Influencer ORDER BY ID;");
     $data = fetch_query_data($res);
     
     if ($data == null) {
