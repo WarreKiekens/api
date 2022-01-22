@@ -9,7 +9,9 @@
     
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad"))) {
-      return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
+      if ($GLOBALS["account_id"] != $infuencerId) {
+        return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
+      }
     }
                 
     $query = "SELECT * FROM post WHERE influencerid = $1";
