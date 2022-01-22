@@ -4,7 +4,7 @@
   function get_details_city($id){
         
     if (!is_numeric($id)){
-      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!!", "error" => "UnprocessableEntity");
+      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
     
     // Authorization
