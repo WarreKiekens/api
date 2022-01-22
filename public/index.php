@@ -11,9 +11,11 @@ include_once("../functions/auth_update_token.php");
 include_once("../functions/get_details_influencers.php");
 include_once("../functions/get_details_influencer.php");
 include_once("../functions/get_details_influencer_posts.php");
+include_once("../functions/get_details_influencer_post.php");
 
 include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
+
 
 $rawBody = json_decode(file_get_contents("php://input"), true);
 if (count($rawBody) > 0) {
@@ -83,7 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["influencers"]) && $_GET["influencers"] != "" && isset($_GET["posts"]) && $_GET["influencers"] != "") {
       $influencerId = $_GET["influencers"];
       $postId = $_GET["posts"];
-      //$details = get_details_influencer_post.php();
+      $details = get_details_influencer_post($influencerId, $postId);
+      
+      if ($details["valid"]) {
+        sendResponse(200, "Posts successfully requested!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      } 
       
     }
   
