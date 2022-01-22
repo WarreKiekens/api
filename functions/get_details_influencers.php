@@ -8,7 +8,7 @@
       return array("valid" => false, "code" => 401, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
             
-    $res = pg_query("SELECT voornaam,familienaam,geslacht FROM Influencer;");
+    $res = pg_query("SELECT id,voornaam,familienaam,geslacht FROM Influencer ORDER BY ID;");
     $data = fetch_query_data($res);
     
     if ($data == null) {
