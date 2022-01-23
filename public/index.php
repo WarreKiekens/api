@@ -30,6 +30,36 @@ if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
   exit();
 }
 
+
+
+// /api/cities...
+if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
+
+  // /api/cities/{id}
+  if (isset($_GET["cities"]) && $_GET["cities"] != "") {
+    $cityId = $_GET["cities"];
+
+    $details = get_details_city($cityId);
+
+    if ($details["valid"]) {
+      sendResponse(200, "City successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }    
+  }
+
+  // /api/cities
+  $details = get_details_cities();
+
+  if ($details["valid"]) {
+    sendResponse(200, "Cities successfully requested!", $details["data"]);
+  } else {
+    sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+  }
+}
+
+
+
 // Authentication
 // If token is set in header, check ExpireToken
 if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
@@ -130,31 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     }
   }
   
-  // /api/cities...
-  if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
-    
-    // /api/cities/{id}
-    if (isset($_GET["cities"]) && $_GET["cities"] != "") {
-      $cityId = $_GET["cities"];
-
-      $details = get_details_city($cityId);
-
-      if ($details["valid"]) {
-        sendResponse(200, "City successfully requested!", $details["data"]);
-      } else {
-        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
-      }    
-    }
-    
-    // /api/cities
-    $details = get_details_cities();
-    
-    if ($details["valid"]) {
-      sendResponse(200, "Cities successfully requested!", $details["data"]);
-    } else {
-      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
-    }
-  }
+  
   
 
 }  
