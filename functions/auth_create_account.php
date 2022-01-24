@@ -27,7 +27,7 @@
         "emailadres" => $fields["email"],
       ); 
       
-      $result = pg_insert($GLOBALS["conn"], 'admin', $values, PG_DML_ESCAPE);
+      $result = pg_insert($GLOBALS["conn"], 'stad', $values, PG_DML_ESCAPE);
       
       
     
@@ -37,7 +37,7 @@
     }
     
     if ($result) {
-      return array("valid" => true, "data" => array("token" => $token, "creationtime" => $now["now"], "expiretime" => $expire["expire"]));
+      return array("valid" => true, "data" => $values;
     }
 
     return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");  
