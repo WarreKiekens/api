@@ -16,7 +16,7 @@
         
         // Validate existing token
         
-        $parties = ["influencer", "stad"];
+        $parties = ["influencer", "stad", "admin"];
         foreach ($parties as $party){
           
           $query = "SELECT count(*) as count FROM $party WHERE token = $1";         
