@@ -37,7 +37,7 @@
     }
     
     if ($result) {
-      return array("valid" => true, "data" => $values;
+      return array("valid" => true, "data" => $values);
     }
 
     return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");  
