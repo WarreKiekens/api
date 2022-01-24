@@ -19,7 +19,9 @@
     
     
     if ($type == "influencer") {
-      $result = pg_insert($GLOBALS["conn"], "influencer", $fields);
+      
+      sendResponse(200, "Influencer not yet supported!");
+      //$result = pg_insert($GLOBALS["conn"], "influencer", $fields);
       
     
     } elseif ($type == "stad") {
