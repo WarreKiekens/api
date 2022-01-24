@@ -63,16 +63,6 @@ if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
 
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  // Debug
-  //echo (json_encode($_POST, JSON_PRETTY_PRINT));
-  
-  // /api/register
-  
-  
-}
-
-
 // Authentication
 // If token is set in header, check ExpireToken
 if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
@@ -113,11 +103,12 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
     }
   }
   
+  
+  // /api/register => create influencer (everyone access, no token required)
   if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
-
-    $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
     
-    sendResponse(200, "Tried to register:", $auth["valid"]);
+    sendResponse(200, "Create influencer", array(1));
+    
   }
 
 }
@@ -192,11 +183,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   // Debug
   //echo (json_encode($_POST, JSON_PRETTY_PRINT));
- 
   
-  // /api/register
-  
-  
+  if ($GLOBALS["type"] == "admin"){
+    // /api/register => create stad (only admin access, token required)
+    if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
+      sendResponse(200, "Create stad", array(1));
+    }
+    
+    
+  }
   
   
 }
