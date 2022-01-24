@@ -206,8 +206,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   // Debug
   //echo (json_encode($_POST, JSON_PRETTY_PRINT));
   
+  // Activate city accounts
   if ($GLOBALS["account_type"] == "admin"){
-    
    
   }
   
