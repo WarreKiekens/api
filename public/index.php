@@ -139,10 +139,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     sendResponse(200, "Id successfully requested!", array("id" => $GLOBALS["account_id"]));
   }
   
-  // /api/validation...
-  if (strpos($_SERVER["REQUEST_URI"], "/api/validation") === 0) {
+  // /api/me...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/me") === 0) {
     
-    sendResponse(200, "Id successfully requested!", array("id" => $GLOBALS["account_id"], "id" => $GLOBALS["account_type"]));
+    sendResponse(200, "Validation details successfully requested!", array("id" => $GLOBALS["account_id"], "type" => $GLOBALS["account_type"]));
   }
   
   // /api/influencers...
