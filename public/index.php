@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $details = auth_create_account("stad", $fields);
       
       if ($details["valid"]){
-        sendResponse(200, "Access request successfully processed!", $details["data"]);
+        sendResponse(200, "Access request successfully submitted!", $details["data"]);
         
       } else {
         sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
