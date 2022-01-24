@@ -31,16 +31,16 @@ if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
   echo "Wrong path<br>";
   var_dump($_SERVER);
   var_dump(explode("/",$_SERVER["REDIRECT_URL"]));
-  exit();
+  die();
 }
 
 
 // Public functions
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
-// /api/cities...
-if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
-  
+  // /api/cities...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
+
     // /api/cities/{id}
     if (isset($_GET["cities"]) && $_GET["cities"] != "") {
       $cityId = $_GET["cities"];
@@ -125,6 +125,12 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // /api/id...
   if (strpos($_SERVER["REQUEST_URI"], "/api/id") === 0) {
     sendResponse(200, "Id successfully requested!", array("id" => $GLOBALS["account_id"]));
+  }
+  
+  // /api/validation...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/validation") === 0) {
+    
+    sendResponse(200, "Id successfully requested!", array("id" => $GLOBALS["account_id"], "id" => $GLOBALS["account_type"]);
   }
   
   // /api/influencers...
