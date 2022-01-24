@@ -4,7 +4,7 @@
   function auth_create_account($type, $fields){
     
     // Check if account already exists
-    $query = "SELECT count(*) as count FROM $stad WHERE gebruikersnaam = $1;";
+    $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = $1;";
     $data = fetch_query_params($query, array($username));
     
     if ($data != null) {
