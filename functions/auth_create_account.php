@@ -17,7 +17,19 @@
       
     
     } elseif ($type == "stad") {
-      $result = pg_insert($GLOBALS["conn"], 'admin', $fields, PG_DML_ESCAPE);
+      
+        
+      $values = array(
+        "gebruikersnaam" => $fields["username"],
+        "wachtwoord" => $fields["password"],
+        "naam" => $fields["name"],
+        "postcode" => $fields["postcode"],
+        "emailadres" => $fields["email"];
+      ); 
+      
+      $result = pg_insert($GLOBALS["conn"], 'admin', $values, PG_DML_ESCAPE);
+      
+      
     
     } else {
       return array("valid" => false, "code" => "500", "message" => "Internal referral type not allowed!", "error" => "InternalError");
