@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   // Debug
   //echo (json_encode($_POST, JSON_PRETTY_PRINT));
   
-  if ($GLOBALS["type"] == "admin"){
+  if ($GLOBALS["account_type"] == "admin"){
     // /api/register => create stad (only admin access, token required)
     if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
       sendResponse(200, "Create stad", array(1));
