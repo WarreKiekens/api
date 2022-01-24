@@ -36,7 +36,7 @@
               $query = "SELECT id FROM $party WHERE token = $1;";            
               $data = fetch_query_params($query, array($token));
               
-              return array("valid" => true, "id" => $data["id"], "type" => $party);
+              return array("valid" => true, "id" => $data["id"], "type" => $party, "creationtime" => $time["creationtime"], "expiretime" => $time["expiretime"]);
             } else {
               // Token expired
               return array("valid" => false, "code" => 401, "message" => "Token has expired!", "error" => "AuthTokenExpire");
