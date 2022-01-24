@@ -195,7 +195,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       // Create city
       $fields = $_POST;
       $details = auth_create_account("stad", $fields);
-      sendResponse(200, "Create stad", array(1));
+      
+      if ($details["valid"]){
+        sendResponse(200, "City succesfully created", $details["data"]));
+        
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      }
     }
     
     
