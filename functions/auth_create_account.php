@@ -13,7 +13,7 @@
     
     
     if ($type == "influencer") {
-      $result = pg_insert($GLOBALS["conn"], "influencer", $fields, PG_DML_ESCAPE);
+      $result = pg_insert($GLOBALS["conn"], "influencer", $fields);
       
     
     } elseif ($type == "stad") {
@@ -27,7 +27,7 @@
         "emailadres" => $fields["email"],
       ); 
       
-      $result = pg_insert($GLOBALS["conn"], 'stad', $values, PG_DML_ESCAPE);
+      $result = pg_insert($GLOBALS["conn"], 'stad', $values);
       
       
     
