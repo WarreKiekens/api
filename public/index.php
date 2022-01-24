@@ -62,6 +62,17 @@ if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
 }
 
 
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  // Debug
+  //echo (json_encode($_POST, JSON_PRETTY_PRINT));
+  
+  // /api/register
+  
+  
+}
+
+
 // Authentication
 // If token is set in header, check ExpireToken
 if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "") {
@@ -80,22 +91,30 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
     
 } else {
 
-  // Check if account credentials are valid
-  $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
-  if ($auth["valid"]) {
+  // login
+  
+  if (strpos($_SERVER["REQUEST_URI"], "/api/login") === 0) {
+    // Check if account credentials are valid
+    $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
+    if ($auth["valid"]) {
 
-    // Update token
-    $token = auth_update_token($auth["id"], $_POST["type"]);
-    
-    if ($token["valid"]) {
-      sendResponse(200, "Token successfully requested!", $token["data"]);
+      // Update token
+      $token = auth_update_token($auth["id"], $_POST["type"]);
+
+      if ($token["valid"]) {
+        sendResponse(200, "Token successfully requested!", $token["data"]);
+      } else {
+        sendResponse($token["code"], $token["message"], $token["data"], $token["error"]);
+      }
+
+
     } else {
-      sendResponse($token["code"], $token["message"], $token["data"], $token["error"]);
+      sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
     }
-    
-    
-  } else {
-    sendResponse($auth["code"], $auth["message"], $auth["data"], $auth["error"]);
+  }
+  
+  if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
+    sendResponse(200, "Successfully registered!", "1");
   }
 
 }
@@ -172,7 +191,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   //echo (json_encode($_POST, JSON_PRETTY_PRINT));
  
   
-  // api/login Body:[type(influencer,stad), name, password] Headers:[]
+  // /api/register
+  
   
   
   
