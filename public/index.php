@@ -114,7 +114,10 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   }
   
   if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
-    sendResponse(200, "Successfully registered!", "1");
+
+    $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
+    
+    sendResponse(200, "Tried to register:", $auth["valid"]);
   }
 
 }
