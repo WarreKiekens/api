@@ -108,12 +108,24 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   }
   
   
-  // /api/register => create influencer (everyone access, no token required)
+  // /api/register (everyone access, no token required)
   if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
     
-    sendResponse(200, "Create influencer", array(1));
+    //  Create request for stad-access or influencer depending on type
+    $fields = $_POST;
+    $details = auth_create_account($fields);
+
+    if ($details["valid"]){
+      // check if type is stad or influencer and send diff msg
+      sendResponse(200, "Access request successfully submitted!", $details["data"]);
+
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
     
   }
+  
+  
 
 }
 
@@ -196,21 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   
   if ($GLOBALS["account_type"] == "admin"){
     
-    // /api/register => create stad (only admin access, token required)
-    if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
-      // Create city
-      $fields = $_POST;
-      $details = auth_create_account("stad", $fields);
-      
-      if ($details["valid"]){
-        sendResponse(200, "Access request successfully submitted!", $details["data"]);
-        
-      } else {
-        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
-      }
-    }
-    
-    
+   
   }
   
   
