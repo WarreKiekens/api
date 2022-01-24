@@ -7,7 +7,7 @@
     $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = $1;";
     $data = fetch_query_params($query, array($username));
     
-    if ($data != null) {
+    if ($data["count"] >= 1) {
       return array("valid" => false, "code" => "409", "message" => "Account already exists!", "error" => "AccountExists");
     }
     
