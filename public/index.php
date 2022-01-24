@@ -7,6 +7,8 @@ include_once("../functions/auth_isvalid_account.php");
 include_once("../functions/auth_isvalid_token.php");
 include_once("../functions/auth_update_token.php");
 
+include_once("../functions/auth_create_account.php");
+
 // In future, probably needs to be moved to bottom due to performancy issues
 include_once("../functions/get_details_influencers.php");
 include_once("../functions/get_details_influencer.php");
@@ -15,6 +17,8 @@ include_once("../functions/get_details_influencer_post.php");
 
 include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
+
+
 
 
 $rawBody = json_decode(file_get_contents("php://input"), true);
@@ -185,8 +189,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   //echo (json_encode($_POST, JSON_PRETTY_PRINT));
   
   if ($GLOBALS["account_type"] == "admin"){
+    
     // /api/register => create stad (only admin access, token required)
     if (strpos($_SERVER["REQUEST_URI"], "/api/register") === 0) {
+      // Create city
+      $fields = $_POST;
+      $details = auth_create_account("stad", $fields);
       sendResponse(200, "Create stad", array(1));
     }
     
