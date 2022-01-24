@@ -8,7 +8,7 @@
     $data = fetch_query_params($query, array($fields["username"]));
     
     if ($data["count"] >= 1) {
-      return array("valid" => false, "code" => "409", "message" => "Account already exists!", "error" => "AccountExists");
+      return array("valid" => false, "code" => "409", "message" => "Username already exists!", "error" => "AccountExists");
     }
     
     
@@ -37,7 +37,7 @@
     }
     
     if ($result) {
-      return array("valid" => true, "data" => $values);
+      return array("valid" => true);
     }
 
     return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");  
