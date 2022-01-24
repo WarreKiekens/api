@@ -24,7 +24,7 @@
         "wachtwoord" => $fields["password"],
         "naam" => $fields["name"],
         "postcode" => $fields["postcode"],
-        "emailadres" => $fields["email"];
+        "emailadres" => $fields["email"],
       ); 
       
       $result = pg_insert($GLOBALS["conn"], 'admin', $values, PG_DML_ESCAPE);
