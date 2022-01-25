@@ -11,7 +11,7 @@
     
     // Check if account already exists
     $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = $1;";
-    $data = fetch_query_params($query, array($fields["username"]));
+    $data = fetch_query_params($query, array($fields["username"]))[0];
     
     if ($data["count"] >= 1) {
       return array("valid" => false, "code" => "409", "message" => "Username already exists!", "error" => "AccountExists");
@@ -38,8 +38,6 @@
       $values = array(
         "gebruikersnaam" => $fields["username"],
         "wachtwoord" => $fields["password"],
-        "naam" => $fields["name"],
-        "postcode" => $fields["postcode"],
         "emailadres" => $fields["email"],
       ); 
       
