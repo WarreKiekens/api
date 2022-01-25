@@ -3,7 +3,7 @@
 
   function get_details_city_influencers($cityId){
     
-    if (!is_numeric($influencerId)){
+    if (!is_numeric($cityId)){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
     
