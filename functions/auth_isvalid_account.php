@@ -15,11 +15,11 @@
     }
     
     $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = $1 and wachtwoord = $2;";
-    $data = fetch_query_params($query, array($username, $password));
+    $data = fetch_query_params($query, array($username, $password))[0];
     
     if ($data["count"] === "1") {
       $query = "SELECT id FROM $type WHERE gebruikersnaam = $1 and wachtwoord = $2;";
-      $data = fetch_query_params($query, array($username, $password));
+      $data = fetch_query_params($query, array($username, $password))[0];
       
       return array("valid" => true, "id" => $data["id"]);
     } 
