@@ -4,9 +4,9 @@
     
     $result = pg_fetch_all($res);
 
-    if (count($result) == 1) {
-      $result = $result[0];
-    }
+    //if (count($result) == 1) {
+    //  $result = $result[0];
+    //}
     return $result;
   }
 
