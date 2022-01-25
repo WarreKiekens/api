@@ -204,9 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["cities"]) && $_GET["cities"] != "" && isset($_GET["influencers"]) && $_GET["influencers"] == "") {
       $cityId = $_GET["cities"];
 
-      //$details = get_details_city_influencers($cityId);
-      
-      die();
+      $details = get_details_city_influencers($cityId);
       
       if ($details["valid"]) {
         sendResponse(200, "Influencers of city successfully requested!", $details["data"]);
