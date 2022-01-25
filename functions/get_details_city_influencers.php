@@ -12,7 +12,7 @@
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
                 
-    $query = "SELECT * FROM city WHERE id = $1";
+    $query = "SELECT * FROM stad WHERE id = $1";
     $data = fetch_query_params($query, array($cityId));
     
     if ($data == null) {
