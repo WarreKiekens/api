@@ -16,8 +16,7 @@
     $data = fetch_query_params($query, array($cityId));
     
     if ($data == null) {
-      return array("valid" => false, "code" => 200, "message" => "Index out of reach!", "error" => "IndexOverflow");
-      //return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
+      return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
     } 
     return array("valid" => true, "data" => $data);
   };
