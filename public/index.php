@@ -18,6 +18,8 @@ include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
 include_once("../functions/get_details_city_influencers.php");
 
+include_once("../functions/put_isactive.php");
+
 
 
 
@@ -238,4 +240,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {}
 
-if ($_SERVER["REQUEST_METHOD"] === "PUT") {}
+if ($_SERVER["REQUEST_METHOD"] === "PUT") {
+  
+  // /api/accounts...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/accounts") === 0) {
+    
+    // /api/accounts
+    $type = $_PUT["type"];
+    $id = $_PUT["id"];
+    $value = $_PUT["value"];
+    
+    $details = put_isactive($type, $id, $value);
+    sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+  }
+}
