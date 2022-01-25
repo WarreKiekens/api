@@ -15,7 +15,7 @@
     }
                 
     $query = "SELECT * FROM post WHERE influencerid = $1 and id = $2";
-    $data = fetch_query_params($query, array($influencerId, $postId));
+    $data = fetch_query_params_raw($query, array($influencerId, $postId));
     
     if ($data == null) {
       return array("valid" => false, "code" => 200, "message" => "Index out of reach!", "error" => "IndexOverflow");
