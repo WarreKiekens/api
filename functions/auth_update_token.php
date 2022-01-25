@@ -8,10 +8,10 @@
         
     // Get current epoch time on psql server
     $res = pg_query("select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS') as now");
-    $now = fetch_query_data($res);
+    $now = fetch_query_data($res)[0];
     
     $res = pg_query("select TO_CHAR(NOW() + interval '1 day', 'DD-MM-YYYY HH:MI:SS') as expire");
-    $expire = fetch_query_data($res);
+    $expire = fetch_query_data($res)[0];
     
     $result = pg_update($GLOBALS["conn"], $type, array("token" => $token, "expiretoken" => $now["now"]), array("id" => $id));
     
