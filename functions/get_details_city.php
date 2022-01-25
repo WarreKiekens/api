@@ -15,7 +15,7 @@
     }
         
     $query = "SELECT id,naam,postcode FROM stad where id = $1";
-    $data = fetch_query_params($query, array($id));
+    $data = fetch_query_params_raw($query, array($id));
     
     if ($data == null) {
       return array("valid" => false, "code" => 200, "message" => "Index out of reach!", "error" => "IndexOverflow");
