@@ -35,7 +35,7 @@ if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
 
 
 // Public functions
-if ($_SERVER["REQUEST_METHOD"] === "GET") {
+if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
 
   // /api/cities...
   if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
@@ -195,6 +195,30 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
   }
+  
+  
+  // /api/cities...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/influencers") === 0) {
+    
+    // /api/cities/{id}/influencers
+    if (isset($_GET["cities"]) && $_GET["cities"] != "" && isset($_GET["influencers"]) && $_GET["influencers"] == "") {
+      $cityId = $_GET["cities"];
+
+      //$details = get_details_city_influencers($cityId);
+      
+      die();
+      
+      if ($details["valid"]) {
+        sendResponse(200, "Influencers of city successfully requested!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      }    
+    }
+    
+    
+  }
+  
+   
   
   
   
