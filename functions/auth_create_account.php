@@ -20,6 +20,14 @@
     
     if ($type == "influencer") {
       
+      $values = array(
+        "gebruikersnaam" => $fields["username"],
+        "wachtwoord" => $fields["password"],
+        "naam" => $fields["name"],
+        "postcode" => $fields["postcode"],
+        "emailadres" => $fields["email"],
+      );
+      
       sendResponse(200, "Influencer not yet supported!");
       //$result = pg_insert($GLOBALS["conn"], "influencer", $fields);
       
