@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   
   
   // /api/cities...
-  if (strpos($_SERVER["REQUEST_URI"], "/api/influencers") === 0) {
+  if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
     
     // /api/cities/{id}/influencers
     if (isset($_GET["cities"]) && $_GET["cities"] != "" && isset($_GET["influencers"]) && $_GET["influencers"] == "") {
