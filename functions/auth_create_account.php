@@ -20,6 +20,7 @@
     
     if ($type == "influencer") {
       
+      // TODO: validate input
       $values = array(
         "gebruikersnaam" => $fields["username"],
         "wachtwoord" => $fields["password"],
@@ -28,18 +29,16 @@
       
       $result = pg_insert($GLOBALS["conn"], $type, $values);
       
-      sendResponse(200, "Influencer not yet supported!");
-      //$result = pg_insert($GLOBALS["conn"], "influencer", $fields);
-      
-    
     } elseif ($type == "stad") {
       
-        
+      
+      // TODO: validate input
       $values = array(
         "gebruikersnaam" => $fields["username"],
         "wachtwoord" => $fields["password"],
         "emailadres" => $fields["email"],
       ); 
+      
       
       $result = pg_insert($GLOBALS["conn"], $type, $values);
       
