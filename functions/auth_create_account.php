@@ -23,10 +23,10 @@
       $values = array(
         "gebruikersnaam" => $fields["username"],
         "wachtwoord" => $fields["password"],
-        "naam" => $fields["name"],
-        "postcode" => $fields["postcode"],
         "emailadres" => $fields["email"],
       );
+      
+      $result = pg_insert($GLOBALS["conn"], $type, $values);
       
       sendResponse(200, "Influencer not yet supported!");
       //$result = pg_insert($GLOBALS["conn"], "influencer", $fields);
@@ -43,7 +43,7 @@
         "emailadres" => $fields["email"],
       ); 
       
-      $result = pg_insert($GLOBALS["conn"], 'stad', $values);
+      $result = pg_insert($GLOBALS["conn"], $type, $values);
       
       
     
