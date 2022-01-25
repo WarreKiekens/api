@@ -34,7 +34,7 @@
               
               // Get id that matches with token
               $query = "SELECT id FROM $party WHERE token = $1;";            
-              $data = fetch_query_params($query, array($token));
+              $data = fetch_query_params($query, array($token))[0];
               
               return array("valid" => true, "id" => $data["id"], "type" => $party);
             } else {
