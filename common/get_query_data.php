@@ -24,8 +24,8 @@
   }
 
   function fetch_query_params_raw($query, $array){
-    $res = pg_query_params_raw($GLOBALS["conn"], $query, $array);
-    return fetch_query_data($res);
+    $res = pg_query_params($GLOBALS["conn"], $query, $array);
+    return fetch_query_data_raw($res);
   }
 
 ?>
