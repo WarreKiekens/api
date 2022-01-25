@@ -20,7 +20,7 @@
         foreach ($parties as $party){
           
           $query = "SELECT count(*) as count FROM $party WHERE token = $1";         
-          $data = fetch_query_params($query, array($token));
+          $data = fetch_query_params($query, array($token))[0];
           
           if ($data["count"] === "1") {
             $query = "SELECT (select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS')) as expireTime, expiretoken as creationTime FROM $party WHERE token = $1;";            
