@@ -16,6 +16,7 @@ include_once("../functions/get_details_influencer_post.php");
 
 include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
+include_once("../functions/get_details_city_influencers.php");
 
 
 
