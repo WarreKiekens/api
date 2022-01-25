@@ -1,5 +1,5 @@
 <?php
-  $host = "192.168.56.115";
+  $host = "10.0.0.4";
   //$host = "192.168.56.101";
   //$host = "192.168.56.102";
 
@@ -7,8 +7,7 @@
 
   $user = "application";
 
-  $password = "warre";
-  //$password = "application";
+  $password = "application";
   
 
   $conn = pg_connect("host=$host dbname=$dbname user=$user password=$password");
