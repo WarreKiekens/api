@@ -18,10 +18,40 @@
       $values = array(
         "gebruikersnaam" => $fields["username"],
         "wachtwoord" => $fields["password"],
-        "naam" => $fields["name"],
+        "profielfoto" => $fields["profilepicture"],
+        "voornaam" => $fields["firstname"],
+        "familienaam" => $fields["lastname"],
+        "adres" => $fields["adress"],
         "postcode" => $fields["postcode"],
+        "stad" => $fields["stad"],
+        "geboortedatum" => $fields["dateofbirth"],
+        "telefoonnummer" => $fields["phonenumber"],
         "emailadres" => $fields["email"],
-      ); 
+        "geslacht" => $fields["gender"],
+        "gebruikersnaaminstagram" => $fields["usernameinstagram"],
+        "gebruikersnaamfacebook" => $fields["usernamefacebook"],
+        "gebruikersnaamtiktok" => $fields["usernametiktok"],
+        "infoovervolgers" => $fields["infoaboutfollowers"],
+        "pincode" => $fields["pincode"],
+        "vingerafdruk" => $fields["fingerprint"],
+        "scangezicht" => $fields["scanface"],
+        "aantalvolgerinstagram" => $fields["totalfollowersinstagram"],
+        "aantalvolgerfacebook" => $fields["totalfollowersfacebook"],
+        "aantalvolgertiktok" => $fields["totalfollowerstiktok"],
+        "badge" => $fields["badge"],
+        "isgevalideerd" => $fields["isvalidated"],
+        "isaangevuld" => $fields["iscompleted"],
+        "isactief" => $fields["isactive"],
+        "aantalpunten" => $fields["totalpoints"],       
+      );
+      
+      // unset all null values
+      
+      foreach($values as $key=>$value){
+        if(is_null($value) || $value == '')
+            unset($values[$key]);
+      }
+      
     
     } elseif ($GLOBALS["account_type"] == "stad") {
       
@@ -34,7 +64,11 @@
         "emailadres" => $fields["email"],
       ); 
     } 
-      
+
+    // debug
+    echo json_encode($values);
+    die();
+    
     $result = pg_insert($GLOBALS["conn"], $type, $values);
     
     
