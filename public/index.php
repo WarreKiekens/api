@@ -26,6 +26,7 @@ include_once("../functions/put_isactive.php");
 $rawBody = json_decode(file_get_contents("php://input"), true);
 if (count($rawBody) > 0) {
   $_POST = $rawBody;
+  $_PUT = $rawBody;
 }
 
 // Check if path start with /api
