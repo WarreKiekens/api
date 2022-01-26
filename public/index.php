@@ -243,10 +243,10 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {}
 
 if ($_SERVER["REQUEST_METHOD"] === "PUT") {
   
-  // /api/accounts...
-  if (strpos($_SERVER["REQUEST_URI"], "/api/accounts") === 0) {
+  // /api/activation...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/activation") === 0) {
     
-    // /api/accounts
+    // /api/activation
     $type = $_PUT["type"];
     $id = $_PUT["id"];
     $value = $_PUT["value"];
