@@ -67,7 +67,7 @@
 
     
     
-    $result = pg_update($GLOBALS["conn"], $type, $values, array("id" => $GLOBALS["account_id"]));
+    $result = pg_update($GLOBALS["conn"], $GLOBALS["account_type"], $values, array("id" => $GLOBALS["account_id"]));
     
     
     if ($data == null) {
