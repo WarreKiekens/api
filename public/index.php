@@ -32,8 +32,8 @@ if (count($rawBody) > 0) {
 if ($_SERVER["REQUEST_METHOD"] === "PUT") {
 
   if (explode(";", $_SERVER["CONTENT_TYPE"])[0] == "multipart/form-data") {
-    $req = array();
-    parse_raw_http_request($req);
+    $_PUT = array();
+    parse_raw_http_request($_PUT);
     
   } else {
     $_PUT = $rawBody;
