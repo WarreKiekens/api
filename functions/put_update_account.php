@@ -6,12 +6,7 @@
     if (!is_numeric($fields["id"])){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
-    
-    $type = $fields["type"];
-    if (!in_array($type, ["stad", "influencer"])) {
-      return array("valid" => false, "code" => 400, "message" => "Type is expected to be of stad or influencer in body!", "error" => "AuthTypeInvalid");
-    }
-    
+        
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad", "influencer")) or ($GLOBALS["account_id"] != $id) or ($GLOBALS["account_type"] != $type)) {
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
