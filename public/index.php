@@ -277,5 +277,17 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
   // /api/accounts...
   if (strpos($_SERVER["REQUEST_URI"], "/api/accounts") === 0) {
     
+     $values = $_PUT;
+     $details = put_update_account($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Details successfully updated!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
   }
+  
 }
+
+sendResponse(404, "Page not found!", $details["data"], "PageNotFound");
+
