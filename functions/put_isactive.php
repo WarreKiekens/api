@@ -7,6 +7,14 @@
       return array("valid" => false, "code" => 400, "message" => "Type is expected to be of stad or influencer in body!", "error" => "AuthTypeInvalid");
     }
     
+    if (in_array($bool, ["true", "false"]) {
+      if ($bool == "true") {
+        $bool = true;
+      } else {
+        $bool = false;
+      }
+    }
+    
     if (!is_numeric($id) or !is_bool($bool)){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
