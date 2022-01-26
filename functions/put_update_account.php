@@ -8,7 +8,7 @@
     }
         
     // Authorization
-    if (!in_array($GLOBALS["account_type"], array("stad", "influencer")) or ($GLOBALS["account_id"] != $id) or ($GLOBALS["account_type"] != $type)) {
+    if (!in_array($GLOBALS["account_type"], array("stad", "influencer")) or ($GLOBALS["account_id"] != $id)) {
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
