@@ -36,6 +36,8 @@
       $values = array(
         "gebruikersnaam" => $fields["username"],
         "wachtwoord" => $fields["password"],
+        "naam" => $fields["name"],
+        "postcode" => $fields["postcode"],
         "emailadres" => $fields["email"],
       ); 
       
