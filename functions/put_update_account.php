@@ -17,7 +17,7 @@
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
-    if ($GLOBALS["account_type"] == "influencer")) {
+    if ($GLOBALS["account_type"] == "influencer") {
 
       // TODO: validate input
       $values = array(
