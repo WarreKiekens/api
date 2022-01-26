@@ -1,15 +1,22 @@
 <?php
+
+// Common functions
 include_once("../common/header.php");
 include_once("../common/response.php");
 include_once("../common/get_query_data.php");
 include_once("../common/http_parse.php");
 
+// Authentication
+  // Verify
 include_once("../functions/auth_isvalid_account.php");
 include_once("../functions/auth_isvalid_token.php");
+  // PUT
 include_once("../functions/auth_update_token.php");
-
+  // POST
 include_once("../functions/auth_create_account.php");
 
+// Data
+  // GET
 include_once("../functions/get_details_influencers.php");
 include_once("../functions/get_details_influencer.php");
 include_once("../functions/get_details_influencer_posts.php");
@@ -19,8 +26,9 @@ include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
 include_once("../functions/get_details_city_influencers.php");
 
+  // PUT
 include_once("../functions/put_isactive.php");
-
+include_once("../functions/put_update_account.php");
 
 
 
@@ -264,5 +272,10 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     
     $details = put_isactive($type, $id, $value);
     sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+  }
+  
+  // /api/accounts...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/accounts") === 0) {
+    
   }
 }
