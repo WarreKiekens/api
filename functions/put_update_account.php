@@ -65,11 +65,9 @@
       ); 
     } 
 
-    // debug
-    echo json_encode($values);
-    die();
     
-    $result = pg_insert($GLOBALS["conn"], $type, $values);
+    
+    $result = pg_update($GLOBALS["conn"], $type, $values);
     
     
     if ($data == null) {
