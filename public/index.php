@@ -2,6 +2,7 @@
 include_once("../common/header.php");
 include_once("../common/response.php");
 include_once("../common/get_query_data.php");
+include_once("../common/http_parse.php");
 
 include_once("../functions/auth_isvalid_account.php");
 include_once("../functions/auth_isvalid_token.php");
@@ -26,7 +27,17 @@ include_once("../functions/put_isactive.php");
 $rawBody = json_decode(file_get_contents("php://input"), true);
 if (count($rawBody) > 0) {
   $_POST = $rawBody;
-  $_PUT = $rawBody;
+  
+  if ($_SERVER["REQUEST_METHOD"] === "PUT") {
+    
+    if (explode(";", $_SERVER["CONTENT_TYPE"])[0] == "multipart/form-data") {
+      $req = array();
+      parse_raw_http_request($req);
+      var_dump($a_data);
+    } else {
+      $_PUT = $rawBody;
+    }
+  }
 }
 
 // Check if path start with /api
