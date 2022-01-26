@@ -7,7 +7,7 @@
       return array("valid" => false, "code" => 400, "message" => "Type is expected to be of stad or influencer in body!", "error" => "AuthTypeInvalid");
     }
     
-    if (in_array($bool, ["true", "false"]) {
+    if (in_array($bool, ["true", "false"])) {
       if ($bool == "true") {
         $bool = true;
       } else {
