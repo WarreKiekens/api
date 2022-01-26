@@ -70,7 +70,7 @@
     $result = pg_update($GLOBALS["conn"], $GLOBALS["account_type"], $values, array("id" => $GLOBALS["account_id"]));
     
     
-    if ($data == null) {
+    if (!$result) {
       return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
     }     
     
