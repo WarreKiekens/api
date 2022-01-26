@@ -20,7 +20,7 @@
     $query = "SELECT id FROM $type where id = $1";
     $data = fetch_query_params($query, array($id));
     
-    if (!in_array($id, $data)){
+    if (!in_array($id, $data)[0]){
       return array("valid" => false, "code" => 422, "message" => "Account doesn't exist!", "error" => "UnprocessableEntity");  
     }
     
