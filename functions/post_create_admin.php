@@ -5,7 +5,7 @@
 
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("admin"))) {
-      return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
+      return array("valid" => false, "code" => 403, "message" => "Unauthorized to create this resource", "error" => "ForbiddenContent");
     }
     
     // Authorization: Check if account is super user
