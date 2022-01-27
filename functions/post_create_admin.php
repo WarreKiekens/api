@@ -3,6 +3,10 @@
 
   function post_create_admin($fields){
 
+    // Authorization
+    if (!in_array($GLOBALS["account_type"], array("admin"))) {
+      return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
+    }
     
     // Authorization: Check if account is super user
     $query = "SELECT isSuper FROM admin WHERE id = $1;";
