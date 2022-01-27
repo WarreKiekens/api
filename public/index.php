@@ -170,7 +170,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
     
   }
   
-  
+  sendResponse(404, "Page not found!", $details["data"], "PageNotFound");
 
 }
 
