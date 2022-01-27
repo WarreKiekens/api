@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
     if (isset($_GET["cityvalue"]) && $_GET["cityvalue"] != "") {
       if (is_int($_GET["cityvalue"])) {
       } else {
-        sendResponse(200, "Cities successfully requested, using name!", json_decode(file_get_contents("../common/all_cities.json", true), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)[($_GET["cityvalue"]] );
+        sendResponse(200, "Cities successfully requested, using name!", json_decode(file_get_contents("../common/all_cities.json", true), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))[$_GET["cityvalue"]] );
       
       }
     }
