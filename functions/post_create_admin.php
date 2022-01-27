@@ -1,7 +1,7 @@
 <?php
   include_once("../config.php");
 
-  function auth_create_admin($fields){
+  function post_create_admin($fields){
 
     
     // Authorization: Check if account is super user
