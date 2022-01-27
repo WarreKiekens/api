@@ -39,9 +39,6 @@
         "aantalvolgerfacebook" => $fields["totalfollowersfacebook"],
         "aantalvolgertiktok" => $fields["totalfollowerstiktok"],
         "badge" => $fields["badge"],
-        "isgevalideerd" => $fields["isvalidated"],
-        "isaangevuld" => $fields["iscompleted"],
-        "isactief" => $fields["isactive"],
         "aantalpunten" => $fields["totalpoints"],       
       );      
     
