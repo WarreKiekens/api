@@ -25,9 +25,9 @@
       
       if ($data["isactief"] == "f") {
         if ($type == "influencer") {
-          return array("valid" => false, "code" => 402, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
+          return array("valid" => false, "code" => 403, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
         }
-        return array("valid" => false, "code" => 402, "message" => "Account is not verified yet! The administrator is still processing your request.", "error" => "AuthAccountNotVerified");
+        return array("valid" => false, "code" => 403, "message" => "Account is not verified yet! The administrator is still processing your request.", "error" => "AuthAccountNotVerified");
         
       }
       
