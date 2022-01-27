@@ -90,11 +90,17 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
   if (strpos($_SERVER["REQUEST_URI"], "/api/list") === 0) {
         
     // /api/list/cities/{name} or /api/list/cities/{postcode}
-    
+    if (isset($_GET["cityvalue"]) && $_GET["cityvalue"] != "") {
+      if (is_int($_GET["cityvalue"])) {
+      } else {
+        sendResponse(200, "Cities successfully requested, using name!", json_decode(file_get_contents("../common/all_cities.json", true), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)[($_GET["cityvalue"]] );
+      
+      }
+    }
     
     // /api/list/cities
 
-    sendResponse(200, "Cities successfully requested!", json_decode(file_get_contents("../common/all_cities.json", true),JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+    sendResponse(200, "Cities successfully requested!", json_decode(file_get_contents("../common/all_cities.json", true), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     
     
     
