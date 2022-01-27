@@ -9,4 +9,6 @@ RewriteRule ^api/influencers/(.*)             /index.php?influencers=$1
 RewriteRule ^api/cities/(.*)/influencers      /index.php?cities=$1&influencers
 RewriteRule ^api/cities/(.*)                  /index.php?cities=$1
 
+RewriteRule ^api/list/cities/(.*)             /index.php?cityvalue=$1
+
 RewriteRule ^api/? index.php
