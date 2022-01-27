@@ -23,7 +23,7 @@
       $query = "SELECT id,isactief FROM $type WHERE gebruikersnaam = $1 and wachtwoord = $2;";
       $data = fetch_query_params($query, array($username, $password))[0];
       
-      if (!$data["isactief"]) {
+      if ($data["isactief"] == "f") {
         if ($type == "influencer") {
           return array("valid" => false, "code" => 402, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
         }
