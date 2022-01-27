@@ -18,8 +18,14 @@
     $data = fetch_query_params($query, array($username, $password))[0];
     
     if ($data["count"] === "1") {
-      $query = "SELECT id FROM $type WHERE gebruikersnaam = $1 and wachtwoord = $2;";
+      
+      // Check if account has been deactivated
+      $query = "SELECT id,isactief FROM $type WHERE gebruikersnaam = $1 and wachtwoord = $2;";
       $data = fetch_query_params($query, array($username, $password))[0];
+      
+      if (!$data["isactief"]) {
+        return array("valid" => false, "code" => 402, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
+      }
       
       return array("valid" => true, "id" => $data["id"]);
     } 
