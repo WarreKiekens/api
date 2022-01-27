@@ -26,6 +26,9 @@ include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
 include_once("../functions/get_details_city_influencers.php");
 
+  // POST
+include_once("../functions/post_create_admin.php");
+
   // PUT
 include_once("../functions/put_isactive.php");
 include_once("../functions/put_update_account.php");
@@ -273,9 +276,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   // Debug
   //echo (json_encode($_POST, JSON_PRETTY_PRINT));
   
-  // Activate city accounts
-  if ($GLOBALS["account_type"] == "admin"){
-   
+
+  // /api/accounts...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/accounts") === 0) {
+    
+     $values = $_POST;
+     $details = post_create_admin($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Account successfully updated!");
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
+  
   }
   
   
