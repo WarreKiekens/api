@@ -88,15 +88,13 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
   
   // /api/list...
   if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
-    
-    include_once("../common/all_cities.json");
-    
+        
     // /api/list/cities/{name} or /api/list/cities/{postcode}
     
     
     // /api/list/cities
 
-    sendResponse(200, "Cities successfully requested!", all_cities());
+    sendResponse(200, "Cities successfully requested!", file_get_contents("../common/all_cities.json"));
     
     
     
