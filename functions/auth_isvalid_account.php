@@ -24,7 +24,11 @@
       $data = fetch_query_params($query, array($username, $password))[0];
       
       if (!$data["isactief"]) {
-        return array("valid" => false, "code" => 402, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
+        if ($type == "influencer") {
+          return array("valid" => false, "code" => 402, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
+        }
+        return array("valid" => false, "code" => 402, "message" => "Account is not verified yet! The administrator is still processing your request.", "error" => "AuthAccountNotVerified");
+        
       }
       
       return array("valid" => true, "id" => $data["id"]);
