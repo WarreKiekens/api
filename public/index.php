@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
   }
   
   // /api/list...
-  if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
+  if (strpos($_SERVER["REQUEST_URI"], "/api/list") === 0) {
         
     // /api/list/cities/{name} or /api/list/cities/{postcode}
     
