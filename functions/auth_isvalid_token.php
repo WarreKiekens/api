@@ -33,8 +33,16 @@
               // Token not expired
               
               // Get id that matches with token
-              $query = "SELECT id FROM $party WHERE token = $1;";            
+              $query = "SELECT id,isactief FROM $party WHERE token = $1;";            
               $data = fetch_query_params($query, array($token))[0];
+              
+              if ($data["isactief"] == "f") {
+                if ($party == "influencer") {
+                  return array("valid" => false, "code" => 403, "message" => "Account is disabled! If this is an error please contact the administrator to resolve this issue.", "error" => "AuthAccountDisabled");
+                }
+                return array("valid" => false, "code" => 403, "message" => "Account is not verified yet! The administrator is still processing your request.", "error" => "AuthAccountNotVerified");
+
+              }
               
               return array("valid" => true, "id" => $data["id"], "type" => $party);
             } else {
