@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
     
     // /api/list/cities
 
-    sendResponse(200, "Cities successfully requested!", file_get_contents("../common/all_cities.json"));
+    sendResponse(200, "Cities successfully requested!", json_decode(file_get_contents("../common/all_cities.json", true),JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     
     
     
