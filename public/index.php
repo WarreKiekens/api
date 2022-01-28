@@ -96,6 +96,17 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
     // /api/list/cities/{name} or /api/list/cities/{postcode}
     if (isset($_GET["cityvalue"]) && $_GET["cityvalue"] != "") {
       if (is_numeric($_GET["cityvalue"])) {
+        
+        // Search a partial string matching in array elements
+        function array_search_partial($arr, $keyword) {
+          $results = array();
+          foreach($arr as $index => $string) {
+            if (strpos($string, $keyword) !== FALSE) {
+                  return $index;
+            }
+          }
+        }
+        
         sendResponse(200, "Cities successfully requested, using postcode!",  array_search(intval($_GET["cityvalue"]), json_decode(file_get_contents("../common/all_cities.json", true), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)));
           
       } else {
