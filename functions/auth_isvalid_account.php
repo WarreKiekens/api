@@ -35,7 +35,7 @@
 
         }
 
-        return array("valid" => true, "id" => $data["id"]);
+        return array("valid" => true, "id" => $data["id"], "type" => $type);
       } 
     
     }
