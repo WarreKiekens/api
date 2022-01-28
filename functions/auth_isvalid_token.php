@@ -45,8 +45,8 @@
               if ($party == "admin") {
                 $query = "SELECT issuper FROM admin WHERE token = $1;";            
                 $res = fetch_query_params($query, array($token))[0];
-                $super = $res["issuper"];
-                if ($super == "t") {
+                
+                if ($res["issuper"] == "t") {
                   $super = true;
                 } 
                 echo "admin: " . $super;
