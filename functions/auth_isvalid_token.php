@@ -3,9 +3,6 @@
 
   function auth_isvalid_token($token){    
     
-    // Debug token
-    //$token = '4f004dacb742f74acfd2919c92ec06c9912f78f91347ccd3281ea792368d8bdf3b8c77e7ce8782406928f654514f9c0704abda50b6b4884750b3e14dfa367185';
-    
     // Validate Bearer
     if (preg_match('/Bearer\s(\S+)/', $token, $matches)) {
       $tokenString = $matches[1];
@@ -44,7 +41,15 @@
 
               }
               
-              return array("valid" => true, "id" => $data["id"], "type" => $party);
+              $super = false;
+              if ($party == "admin") {
+                $query = "SELECT issuper FROM admin WHERE token = $1;";            
+                $res = fetch_query_params($query, array($token))[0];
+                $super = $res["issuper"];
+                echo "admin: " . $super;
+              }
+              
+              return array("valid" => true, "id" => $data["id"], "type" => $party, "super" => $super);
             } else {
               // Token expired
               return array("valid" => false, "code" => 401, "message" => "Token has expired!", "error" => "AuthTokenExpire");
