@@ -8,7 +8,11 @@
     
     if (isset($_GET["where"]) and isset($_GET["like"])) {
       
-        return(filtering());
+      $data = filtering();
+      
+      if ($data == null) {
+        return array("valid" => true, "code" => 200, "message" => "Cities successfully requested!");
+      }
       
     } else {        
       $res = pg_query("SELECT id,naam,postcode,isactief FROM stad ORDER BY id");
