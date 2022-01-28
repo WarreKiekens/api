@@ -138,11 +138,11 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   
   if (strpos($_SERVER["REQUEST_URI"], "/api/login") === 0) {
     // Check if account credentials are valid
-    $auth = auth_isvalid_account($_POST["username"], $_POST["password"], $_POST["type"]);
+    $auth = auth_isvalid_account($_POST["username"], $_POST["password"]);
     if ($auth["valid"]) {
 
       // Update token
-      $token = auth_update_token($auth["id"], $_POST["type"]);
+      $token = auth_update_token($auth["id"], $auth["type"]);
 
       if ($token["valid"]) {
         sendResponse(200, "Token successfully requested!", $token["data"]);
