@@ -131,6 +131,7 @@ if (isset($_SERVER["HTTP_AUTHORIZATION"]) && $_SERVER["HTTP_AUTHORIZATION"] != "
   // Set global id and type
   $GLOBALS["account_id"] = $auth["id"];
   $GLOBALS["account_type"] = $auth["type"];
+  $GLOBALS["account_issuper"] = $auth["super"];
     
 } else {
 
