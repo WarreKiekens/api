@@ -1,7 +1,7 @@
 <?php
   include_once("../config.php");
 
-  function auth_isvalid_account($username, $password, $type){
+  function auth_isvalid_account($username, $password){
     
     //if (!in_array($type, ["stad", "influencer","admin"])) {
     //  return array("valid" => false, "code" => 400, "message" => "Type is expected to be of stad or influencer in body!", "error" => "AuthTypeInvalid");
