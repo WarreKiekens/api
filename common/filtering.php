@@ -70,7 +70,7 @@ function filtering_city_influencers($cityId) {
   } else {
 
     //TODO: check if where value in cols 
-    $sql = "select id,LOWER(voornaam),LOWER(familienaam),LOWER(geslacht),LOWER(gebruikersnaam),LOWER(profielfoto),LOWER(adres),LOWER(postcode),LOWER(stad),LOWER(geboortedatum),LOWER(telefoonnummer),LOWER(emailadres),LOWER(gebruikersnaamInstagram),LOWER(gebruikersnaamFacebook),LOWER(gebruikersnaamTiktok),LOWER(infoovervolgers),LOWER(AantalVolgersInstagram),LOWER(AantalVolgersFacebook),LOWER(AantalVolgersTiktok),badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') and position(LOWER('{$_GET['like']}') in {$_GET['where']}) > 0 ORDER BY ID;";
+    $sql = "select id,LOWER(voornaam),LOWER(familienaam),geslacht,LOWER(gebruikersnaam),LOWER(profielfoto),LOWER(adres),LOWER(postcode),LOWER(stad),LOWER(geboortedatum),LOWER(telefoonnummer),LOWER(emailadres),LOWER(gebruikersnaamInstagram),LOWER(gebruikersnaamFacebook),LOWER(gebruikersnaamTiktok),LOWER(infoovervolgers),LOWER(AantalVolgersInstagram),LOWER(AantalVolgersFacebook),LOWER(AantalVolgersTiktok),badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') and position(LOWER('{$_GET['like']}') in {$_GET['where']}) > 0 ORDER BY ID;";
     $query = pg_query($sql);
     $data = fetch_query_data($query);
 
