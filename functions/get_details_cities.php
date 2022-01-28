@@ -14,9 +14,9 @@
           $query = "SELECT id,naam,postcode,isactief FROM stad WHERE {$_GET['where']} = $1 ORDER BY id";
           
           if ($_GET["like"] == "t") {
-            $data = fetch_query_params($query, array(true));
+            $data = fetch_query_params($query, array('true'));
           } else {
-            $data = fetch_query_params($query, array(false));
+            $data = fetch_query_params($query, array('false'));
           }    
       
         } else {
