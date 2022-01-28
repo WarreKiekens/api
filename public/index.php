@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // /api/me...
   if (strpos($_SERVER["REQUEST_URI"], "/api/me") === 0) {
     
-    sendResponse(200, "Validation details successfully requested!", array("id" => $GLOBALS["account_id"], "type" => $GLOBALS["account_type"]));
+    sendResponse(200, "Validation details successfully requested!", array("id" => $GLOBALS["account_id"], "type" => $GLOBALS["account_type"], "issuper" => $GLOBALS["account_issuper"]));
   }
   
   // /api/influencers...
