@@ -70,7 +70,8 @@ function filtering_city_influencers($cityId) {
   } else {
 
     //TODO: check if where value in cols 
-    $query = pg_query("select id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') and position('{$_GET['value']}' in {$_GET['where']}) > 0 ORDER BY ID;");
+    $sql = "select id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') and position('{$_GET['value']}' in {$_GET['where']}) > 0 ORDER BY ID;";
+    $query = pg_query($sql);
     $data = fetch_query_data($query);
 
   }
