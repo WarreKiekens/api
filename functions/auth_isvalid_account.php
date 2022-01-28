@@ -16,7 +16,7 @@
     
     // Search for type
     $types = ["stad", "influencer", "admin"];
-    foreach ($type as $types) {   
+    foreach ($types as $type) {   
     
       $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = $1 and wachtwoord = $2;";
       $data = fetch_query_params($query, array($username, $password))[0];
