@@ -1,6 +1,6 @@
 <?php
 
-function filter() {
+function filtering() {
   
   // check if value is bool
   if (in_array($_GET["like"], array("t","f"))) {
