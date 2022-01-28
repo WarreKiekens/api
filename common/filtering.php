@@ -20,10 +20,8 @@ function filtering() {
     $data = fetch_query_params($query, array($_GET["like"]));
 
   }
-
-  if ($data == null) {
-    return array("valid" => true, "code" => 200, "message" => "Cities successfully requested!");
-  }
+  
+  return $data;
 
 }
 
