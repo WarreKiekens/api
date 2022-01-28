@@ -8,7 +8,7 @@
     
     if (isset($_GET["where"]) and isset($_GET["like"])) {
       
-      $data = filtering();
+      $data = filtering_cities();
       
       if ($data == null) {
         return array("valid" => true, "code" => 200, "message" => "Cities successfully requested!");
