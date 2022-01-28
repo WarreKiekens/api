@@ -14,7 +14,7 @@
     
     if (isset($_GET["where"]) and isset($_GET["like"])) {
       
-      $data = filtering_city_influencers();
+      $data = filtering_city_influencers($cityId);
       
       if ($data == null) {
         return array("valid" => true, "code" => 200, "message" => "Influencers successfully requested!");
