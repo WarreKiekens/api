@@ -54,7 +54,7 @@ function filtering_influencers() {
 
 
 
-function filtering_city_influencers() {
+function filtering_city_influencers($cityId) {
   
   // check if value is bool
   if (in_array($_GET["like"], array("t","f"))) {
