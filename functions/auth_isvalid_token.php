@@ -49,7 +49,6 @@
                 if ($res["issuper"] == "t") {
                   $super = true;
                 } 
-                var_dump($super);
               }
               
               return array("valid" => true, "id" => $data["id"], "type" => $party, "super" => $super);
