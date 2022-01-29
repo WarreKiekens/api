@@ -8,7 +8,7 @@
     }
     
     // Authorization
-    if (!in_array($GLOBALS["account_type"], array("stad")) || $GLOBALS["account_id"] != $cityId) {
+    if (!in_array($GLOBALS["account_type"], array("stad", "admin")) || $GLOBALS["account_id"] != $cityId) {
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
     
