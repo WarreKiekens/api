@@ -32,8 +32,13 @@
       return array("valid" => false, "code" => 422, "message" => "Account doesn't exist!", "error" => "UnprocessableEntity");  
     }
     
-            
-    $result = pg_update($GLOBALS["conn"], $type, array("isactief" => $bool), array("id" => $id));
+    
+    if ($type == "stad") {
+      $result = pg_update($GLOBALS["conn"], $type, array("isactief" => $bool, "isnew" => false), array("id" => $id));    
+    
+    } else {
+      $result = pg_update($GLOBALS["conn"], $type, array("isactief" => $bool), array("id" => $id));    
+    }
     
     if ($data == null) {
       return array("valid" => false, "code" => 500, "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
