@@ -15,7 +15,7 @@
       }
       
     } else {        
-      $res = pg_query("SELECT id,naam,postcode,isactief FROM stad ORDER BY id");
+      $res = pg_query("SELECT id,naam,postcode,isactief,emailadres FROM stad ORDER BY id");
       $data = fetch_query_data($res);
       
       if ($data == null) {
