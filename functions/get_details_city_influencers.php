@@ -8,9 +8,12 @@
     }
     
     // Authorization
-    if (!in_array($GLOBALS["account_type"], array("stad", "admin")) || $GLOBALS["account_id"] != $cityId) {
-      return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
+    if (!in_array($GLOBALS["account_type"], array("admin")) {
+      if (!in_array($GLOBALS["account_type"], array("stad")) || $GLOBALS["account_id"] != $cityId) {
+        return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
+      }
     }
+    
     
     if (isset($_GET["where"]) and isset($_GET["like"])) {
       
