@@ -27,6 +27,8 @@ include_once("../functions/get_details_cities.php");
 include_once("../functions/get_details_city.php");
 include_once("../functions/get_details_city_influencers.php");
 
+include_once("../functions/get_details_categories.php");
+
   // POST
 include_once("../functions/post_create_admin.php");
 
@@ -63,6 +65,17 @@ if (explode("/",$_SERVER["REDIRECT_URL"])[1] != "api") {
 
 // Public functions
 if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
+  
+  // /api/categories...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/categories") === 0) {
+    $details = get_details_categories();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "City successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    } 
+  }
 
   // /api/cities...
   if (strpos($_SERVER["REQUEST_URI"], "/api/cities") === 0) {
@@ -118,9 +131,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
     // /api/list/cities
 
     sendResponse(200, "Cities successfully requested!", json_decode(file_get_contents("../common/all_cities.json", true), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-    
-    
-    
     
   }
 }
