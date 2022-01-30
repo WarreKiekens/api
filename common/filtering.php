@@ -48,6 +48,31 @@ function filtering_influencers() {
       $data = fetch_query_params($query, array('false'));
     }    
 
+  } elseif (in_array($_GET["where"], array("categories", "Categories"))) {
+   
+    $sql = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories FROM Influencer WHERE {$_GET['where']} = $1 ORDER BY ID;";
+    $query = pg_query($sql);
+    $res = fetch_query_data($query);
+
+    // Convert categories into proper array
+    $data = array();
+    
+    $_GET["like"] = clean(explode("'",$_GET["like"]));
+    
+    $index1 = 0;
+    $index2 = 0;
+    foreach ($res as $influencer){
+      
+      $categoryArray = explode(";", $influencer["categories"]);
+      
+      if ( count(array_intersect($_GET["like"], $categoryArray)) == count($_GET["like"])) {
+        $data[$index1] = $res[$index2];
+        $data[$index1]["categories"] = $categoryArray;
+        $index1++; 
+      }
+      $index2++;
+      
+    }
   } else {
 
     //TODO: check if where value in cols 
