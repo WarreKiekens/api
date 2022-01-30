@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !isset($_GET["influencers"])) {
     $details = get_details_categories();
     
     if ($details["valid"]) {
-      sendResponse(200, "City successfully requested!", $details["data"]);
+      sendResponse(200, "Categories successfully requested!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     } 
