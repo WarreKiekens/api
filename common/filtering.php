@@ -67,7 +67,7 @@ function filtering_influencers() {
       
       if ( count(array_intersect($_GET["like"], $categoryArray)) == count($_GET["like"])) {
         $data[$index1] = $res[$index2];
-        $data[$index1]["categories"] = $categoryArray;
+        //$data[$index1]["categories"] = $categoryArray;
         $index1++; 
       }
       $index2++;
