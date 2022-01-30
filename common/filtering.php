@@ -1,4 +1,13 @@
 <?php
+function clean($arr){
+  $res = array();
+  foreach ($arr as $val){
+    if (strlen($val) >= 2) {
+      array_push($res, $val);
+    }
+  }
+  return $res;
+}
 
 function filtering_cities() {
   
@@ -66,15 +75,20 @@ function filtering_city_influencers($cityId) {
     // Convert categories into proper array
     $data = array();
     
-    $index = 0;
+    $_GET["like"] = clean(explode("'",$_GET["like"]));
+    
+    $index1 = 0;
+    $index2 = 0;
     foreach ($res as $influencer){
       
       $categoryArray = explode(";", $influencer["categories"]);
       
-      if (in_array($_GET["like"], $categoryArray)) {
-        $data[$index]["categories"] = $categoryArray;
-        $index++; 
+      if ( count(array_intersect($_GET["like"], $categoryArray)) == count($_GET["like"])) {
+        $data[$index1] = $res[$index2];
+        $data[$index1]["categories"] = $categoryArray;
+        $index1++; 
       }
+      $index2++;
       
     }
   } else {
