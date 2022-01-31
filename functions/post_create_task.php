@@ -1,14 +1,15 @@
 <?php
   include_once("../config.php");
 
-  function auth_create_task($fields){
+  function post_create_task($fields){
     
-    $type = $fields["type"];
-    
-    if (!in_array($type, ["stad"])) {
-      return array("valid" => false, "code" => 400, "message" => "Type is expected to be of stad or influencer in body!", "error" => "AuthTypeInvalid");
+    // Authorization
+    if (!in_array($GLOBALS["account_type"], array("stad"))){
+      if ($GLOBALS["account_id"] != $id) {
+        return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
+      }
     }
-     
+    
     // TODO: validate input
     $values = array(
       "titel" => $fields["title"],
