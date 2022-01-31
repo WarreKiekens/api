@@ -24,7 +24,7 @@
     ); 
 
 
-    $result = pg_insert($GLOBALS["conn"], "stad", $values);
+    $result = pg_insert($GLOBALS["conn"], "opdracht", $values);
 
 
     if ($result) {
