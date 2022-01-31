@@ -29,6 +29,8 @@ include_once("../functions/get_details_city_influencers.php");
 
 include_once("../functions/get_details_categories.php");
 
+include_once("../functions/post_create_task.php"); 
+
   // POST
 include_once("../functions/post_create_admin.php");
 
@@ -311,7 +313,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
+  }
   
+  // /api/tasks...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/tasks") === 0) {
+  
+     $values = $_POST;
+     $details = post_create_task($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Account successfully updated!");
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
   }
   
   
