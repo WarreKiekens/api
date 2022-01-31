@@ -18,7 +18,7 @@
       "titel" => $fields["title"],
       "omschrijving" => $fields["description"],
       "aantalpuntenwaard" => $fields["totalpointsworth"],
-      "isuitgevoerd" => $fields["isexecuted"],
+      "isuitgevoerd" => false,
       "datumopgegeven" => $now,
       "foto" => $fields["picture"]
     ); 
