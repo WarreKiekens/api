@@ -93,7 +93,7 @@ function filtering_city_influencers($cityId) {
   // Check if value is array
   if (in_array($_GET["where"], array("categories", "Categories"))) {
    
-    $sql = "select id,LOWER(voornaam) as voornaam,LOWER(familienaam) as familienaam,geslacht,LOWER(gebruikersnaam) as gebruikersnaam,profielfoto,adres,postcode,LOWER(stad) as stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') ORDER BY ID;";
+    $sql = "select id,voornaam, familienaam, geslacht, gebruikersnaam, profielfoto, adres, postcode, stad, geboortedatum, telefoonnummer, emailadres, gebruikersnaamInstagram, gebruikersnaamFacebook, gebruikersnaamTiktok, infoovervolgers, AantalVolgersInstagram, AantalVolgersFacebook, AantalVolgersTiktok, badge, aantalpunten, (select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') ORDER BY ID;";
     $query = pg_query($sql);
     $res = fetch_query_data($query);
 
@@ -119,7 +119,7 @@ function filtering_city_influencers($cityId) {
   } else {
 
     //TODO: check if where value in cols 
-    $sql = "select id,LOWER(voornaam) as voornaam,LOWER(familienaam) as familienaam,geslacht,LOWER(gebruikersnaam) as gebruikersnaam,profielfoto,adres,postcode,LOWER(stad) as stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') and {$_GET['where']} ilike '%{$_GET['like']}%' ORDER BY ID;";
+    $sql = "select id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd from influencer where id in (select influencerid from influencerstad where stadid = '{$cityId}') and {$_GET['where']} ilike '%{$_GET['like']}%' ORDER BY ID;";
     $query = pg_query($sql);
     $data = fetch_query_data($query);
 
