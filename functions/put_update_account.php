@@ -23,7 +23,7 @@
         "familienaam" => $fields["lastname"],
         "adres" => $fields["adress"],
         "postcode" => $fields["postcode"],
-        "stad" => $fields["stad"],
+        "stad" => $fields["city"],
         "geboortedatum" => $fields["dateofbirth"],
         "telefoonnummer" => $fields["phonenumber"],
         "emailadres" => $fields["email"],
