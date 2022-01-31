@@ -3,56 +3,27 @@
 
   function auth_create_task($fields){
     
-    // ALLOW CITY TO CREATE TASK
-    
     $type = $fields["type"];
     
-    if (!in_array($type, ["stad", "influencer"])) {
+    if (!in_array($type, ["stad"])) {
       return array("valid" => false, "code" => 400, "message" => "Type is expected to be of stad or influencer in body!", "error" => "AuthTypeInvalid");
     }
-    
-    // Check if account already exists
-    $query = "SELECT count(*) as count FROM $type WHERE gebruikersnaam = $1;";
-    $data = fetch_query_params($query, array($fields["username"]))[0];
-    
-    if ($data["count"] >= 1) {
-      return array("valid" => false, "code" => "409", "message" => "Username already exists!", "error" => "AccountExists");
-    }
-    
-    
-    if ($type == "influencer") {
-      
-      // TODO: validate input
-      $values = array(
-        "gebruikersnaam" => $fields["username"],
-        "wachtwoord" => $fields["password"],
-        "emailadres" => $fields["email"],
-      );
-      
-      $result = pg_insert($GLOBALS["conn"], $type, $values);
-      
-    } elseif ($type == "stad") {
-      
-      
-      // TODO: validate input
-      $values = array(
-        "gebruikersnaam" => $fields["username"],
-        "wachtwoord" => $fields["password"],
-        "naam" => $fields["name"],
-        "postcode" => $fields["postcode"],
-        "emailadres" => $fields["email"],
-      ); 
-      
-      
-      $result = pg_insert($GLOBALS["conn"], $type, $values);
-      
-      
-    
-    } else {
-      return array("valid" => false, "code" => "500", "message" => "Internal referral type not allowed!", "error" => "InternalError");
-    
-    }
-    
+     
+    // TODO: validate input
+    $values = array(
+      "titel" => $fields["title"],
+      "omschrijving" => $fields["description"],
+      "aantalpuntenwaard" => $fields["totalpointsworth"],
+      "isuitgevoerd" => $fields["isexecuted"],
+      "datumopgegeven" => $fields["creationdate"],
+      "datumuitgevoerd" => $fields["executiondate"],
+      "foto" => $fields["picture"]
+    ); 
+
+
+    $result = pg_insert($GLOBALS["conn"], "stad", $values);
+
+
     if ($result) {
       return array("valid" => true);
     }
