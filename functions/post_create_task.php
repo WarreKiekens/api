@@ -10,14 +10,16 @@
       }
     }
     
-    // TODO: validate input
+    $res = pg_query("select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS') as now");
+    $now = fetch_query_data($res)[0];
+    
     $values = array(
+      "stadid" => $GLOBALS["account_id"],
       "titel" => $fields["title"],
       "omschrijving" => $fields["description"],
       "aantalpuntenwaard" => $fields["totalpointsworth"],
       "isuitgevoerd" => $fields["isexecuted"],
-      "datumopgegeven" => $fields["creationdate"],
-      "datumuitgevoerd" => $fields["executiondate"],
+      "datumopgegeven" => $now,
       "foto" => $fields["picture"]
     ); 
 
