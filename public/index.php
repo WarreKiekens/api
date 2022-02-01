@@ -309,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      $details = post_create_admin($values);
     
     if ($details["valid"]) {
-      sendResponse(200, "Account successfully updated!");
+      sendResponse(200, "Account successfully created!");
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
@@ -322,7 +322,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      $details = post_create_task($values);
     
     if ($details["valid"]) {
-      sendResponse(200, "Account successfully updated!");
+      sendResponse(200, "Posts successfully created!");
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
