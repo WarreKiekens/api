@@ -13,7 +13,7 @@
       //$data = filtering_tasks();
       
       if ($data == null) {
-        return array("valid" => true, "code" => 200, "message" => "Influencers successfully requested!");
+        return array("valid" => true, "code" => 200, "message" => "Tasks successfully requested!");
       }
     } else {
       $query = "SELECT * FROM opdracht where stadid = $1 ORDER BY ID;";
