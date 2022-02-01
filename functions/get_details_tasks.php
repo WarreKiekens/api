@@ -16,7 +16,7 @@
         return array("valid" => true, "code" => 200, "message" => "Influencers successfully requested!");
       }
     } else {
-      $res = "SELECT * FROM opdracht where stadid = $1 ORDER BY ID;";
+      $query = "SELECT * FROM opdracht where stadid = $1 ORDER BY ID;";
       $data = fetch_query_params($query, array($GLOBALS["account_id"]));
     }
     
