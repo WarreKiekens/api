@@ -25,13 +25,7 @@
     
     if (!in_array($fields["taskid"], $trueTasks)){
         return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
-    }
-    
-    var_dump($trueTasks);
-    echo "\n"; 
-    var_dump($data);
-    die();
-    
+    }    
       
     $values = array(
       "titel" => $fields["title"],
@@ -49,6 +43,8 @@
       if(is_null($value) || $value == '')
           unset($values[$key]);
     }
+    
+    echo json_encode($values);
     
     $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["taskid"]));
     
