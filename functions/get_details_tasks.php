@@ -16,8 +16,8 @@
         return array("valid" => true, "code" => 200, "message" => "Influencers successfully requested!");
       }
     } else {
-      $res = pg_query("SELECT * FROM opdracht ORDER BY ID;");
-      $data = fetch_query_data($res);
+      $res = "SELECT * FROM opdracht where stadid = $1 ORDER BY ID;";
+      $data = fetch_query_params($query, array($GLOBALS["account_id"]));
     }
     
     if ($data == null) {
