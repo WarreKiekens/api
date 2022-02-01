@@ -37,6 +37,7 @@ include_once("../functions/post_create_admin.php");
   // PUT
 include_once("../functions/put_isactive.php");
 include_once("../functions/put_update_account.php");
+include_once("../functions/put_update_task.php");
 
 
 
@@ -359,6 +360,21 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
   }
+  
+  
+  // /api/tasks
+  if (strpos($_SERVER["REQUEST_URI"], "/api/tasks") === 0) {
+    
+     $values = $_PUT;
+     $details = put_update_task($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Task successfully updated!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
+  }
+  
   
 }
 
