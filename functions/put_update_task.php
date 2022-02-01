@@ -28,10 +28,10 @@
     }
     
     // check if task already ended
-    $query = "SELECT datumuitgevoerd from opdracht where id = $1";      
-    $dateExecuted = fetch_query_params($query, array($fields["taskid"]))[0];
+    $query = "SELECT isuitgevoerd from opdracht where id = $1";      
+    $isuitgevoerd = fetch_query_params($query, array($fields["taskid"]))[0];
     
-    if(!is_null($dateExecuted) || $dateExecuted != '') {
+    if(!is_null($isuitgevoerd) || $isuitgevoerd != '' || $isuitgevoerd == "f") {
         return array("valid" => false, "code" => 422, "message" => "Task already ended, unable to update.", "error" => "UnprocessableEntity");
     }
     
