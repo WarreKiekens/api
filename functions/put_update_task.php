@@ -25,23 +25,42 @@
     
     if (!in_array($fields["taskid"], $trueTasks)){
         return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
-    }    
-      
+    }
+    
+    // check if task already ended
+    $query = "SELECT datumuitgevoerd from opdracht where id = $1";      
+    $dateExecuted = fetch_query_params($query, array($fields["taskid"]))[0];
+    
+    if(!is_null($dateExecuted) || $dateExecuted != '') {
+        return array("valid" => false, "code" => 422, "message" => "Task already ended, unable to update.", "error" => "UnprocessableEntity");
+    }
+    
     $values = array(
       "titel" => $fields["title"],
-      //"omschrijving" => $fields["description"],
-      //"aantalpuntenwaard" => $fields["totalpointsworth"],
-      //"isuitgevoerd" => false,
-      //"datumopgegeven" => $now["now"],
-      //"foto" => $fields["picture"]
-    ); 
-
-
+      "omschrijving" => $fields["description"],
+      "aantalpuntenwaard" => $fields["totalpointsworth"],
+      "isuitgevoerd" => false,
+      "datumopgegeven" => $now["now"],
+      "foto" => $fields["picture"],
+      "winnaarid" => $fields["winnerid"],
+      
+    );
 
     // unset all null values
     foreach($values as $key=>$value){
       if(is_null($value) || $value == '')
           unset($values[$key]);
+    }
+    
+    // If winner is set, add datumuitgevoerd,isuitgevoerd=>true,winnaarid
+    if ($fields["winnerid"]) {
+        $res = pg_query("select TO_CHAR(NOW(), 'YYYY-MM-DD HH:MI:SS') as now");
+        $now = fetch_query_data($res)[0];
+      
+        $values["datumuitgevoerd"] => $now["now"];
+        $values["isuitgevoerd"] => true;
+        $values["winnaarid"] => $winnerid;
+      
     }
     
     echo json_encode($values);
