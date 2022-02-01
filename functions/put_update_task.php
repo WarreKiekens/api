@@ -24,7 +24,7 @@
       
     // TODO: validate input
     $values = array(
-      "id" => $fields["postid"]
+      "id" => $fields["postid"],
       "winnaarid" => $fields["winnerid"],
       "gebruikersnaam" => $fields["username"],
       "wachtwoord" => $fields["password"],
