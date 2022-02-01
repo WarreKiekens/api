@@ -15,8 +15,8 @@
     }
     
     // Check if account owns given id post + check if executed
-    $res = pg_query("SELECT id from opdracht where stadid = $GLOBALS['account_id']");
-    $data = fetch_query_data($res);
+    $query = pg_query("SELECT id from opdracht where stadid = $1");      
+    $data = fetch_query_params($query, array($GLOBALS['account_id']));
     
     var_dump($data);
     die();
