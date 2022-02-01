@@ -11,4 +11,8 @@ RewriteRule ^api/cities/(.*)                  /index.php?cities=$1
 
 RewriteRule ^api/list/cities/(.*)             /index.php?cityvalue=$1
 
+RewriteRule ^api/tasks/(.*)/posts/(.*)        /index.php?tasks=$1&posts=$2
+RewriteRule ^api/tasks/(.*)/posts             /index.php?tasks=$1&posts
+RewriteRule ^api/tasks/(.*)                   /index.php?tasks=$1
+
 RewriteRule ^api/? index.php
