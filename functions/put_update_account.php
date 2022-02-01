@@ -35,9 +35,9 @@
         "pincode" => $fields["pincode"],
         "vingerafdruk" => $fields["fingerprint"],
         "scangezicht" => $fields["scanface"],
-        "aantalvolgerinstagram" => $fields["totalfollowersinstagram"],
-        "aantalvolgerfacebook" => $fields["totalfollowersfacebook"],
-        "aantalvolgertiktok" => $fields["totalfollowerstiktok"],
+        "aantalvolgersinstagram" => $fields["totalfollowersinstagram"],
+        "aantalvolgersfacebook" => $fields["totalfollowersfacebook"],
+        "aantalvolgerstiktok" => $fields["totalfollowerstiktok"],
         "badge" => $fields["badge"],
         "aantalpunten" => $fields["totalpoints"],       
       );      
