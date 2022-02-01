@@ -3,6 +3,9 @@
 
   function put_update_task($fields){
     
+    if (!is_numeric($fields["postid"])){
+      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
+    }
  
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad"))){
@@ -12,6 +15,11 @@
     }
     
     // Check if account owns given id post + check if executed
+    $res = pg_query("SELECT id from opdracht where stadid = $GLOBALS['account_id']");
+    $data = fetch_query_data($res);
+    
+    var_dump($data);
+    die();
     
       
     // TODO: validate input
