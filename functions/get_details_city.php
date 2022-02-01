@@ -14,7 +14,7 @@
       //}
     }
         
-    $query = "SELECT id,naam,postcode,isnew,emailadres FROM stad where id = $1";
+    $query = "SELECT id,gebruikersnaam,naam,postcode,isnew,emailadres FROM stad where id = $1";
     $data = fetch_query_params($query, array($id));
     
     if ($data == null) {
