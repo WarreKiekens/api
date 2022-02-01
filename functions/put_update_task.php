@@ -31,6 +31,7 @@
     $query = "SELECT isuitgevoerd from opdracht where id = $1";      
     $isuitgevoerd = fetch_query_params($query, array($fields["taskid"]))[0];
     
+    echo $isuitgevoerd;
     if(!is_null($isuitgevoerd) || $isuitgevoerd != '' || $isuitgevoerd == "t") {
         return array("valid" => false, "code" => 422, "message" => "Task already ended, unable to update.", "error" => "UnprocessableEntity");
     }
