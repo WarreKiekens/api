@@ -63,8 +63,6 @@
       
     }
     
-    echo json_encode($values) . "\n";
-    
     $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["taskid"]));
     
     
