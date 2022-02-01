@@ -4,7 +4,7 @@
   function put_update_account($fields){
        
     if (!is_numeric($fields["id"])){
-      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
+      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported! " . gettype($fields["id"]), "error" => "UnprocessableEntity");
     }
         
     // Authorization
