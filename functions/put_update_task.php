@@ -57,9 +57,9 @@
         $res = pg_query("select TO_CHAR(NOW(), 'YYYY-MM-DD HH:MI:SS') as now");
         $now = fetch_query_data($res)[0];
       
-        $values["datumuitgevoerd"] => $now["now"];
-        $values["isuitgevoerd"] => true;
-        $values["winnaarid"] => $winnerid;
+        $values["datumuitgevoerd"] = $now["now"];
+        $values["isuitgevoerd"] = true;
+        $values["winnaarid"] = $winnerid;
       
     }
     
