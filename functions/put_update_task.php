@@ -23,7 +23,7 @@
       array_push($trueTasks, $taskid["id"]);
     }
     
-    if (!in_array($fiels["taskid"], $trueTasks)){
+    if (!in_array($fields["taskid"], $trueTasks)){
         return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
     
