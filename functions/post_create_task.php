@@ -10,7 +10,7 @@
       }
     }
     
-    $res = pg_query("select TO_CHAR(NOW(), 'DD-MM-YYYY HH:MI:SS') as now");
+    $res = pg_query("select TO_CHAR(NOW(), 'YYYY-MM-DD HH:MI:SS') as now");
     $now = fetch_query_data($res)[0];
     
     $values = array(
@@ -19,7 +19,7 @@
       "omschrijving" => $fields["description"],
       "aantalpuntenwaard" => $fields["totalpointsworth"],
       "isuitgevoerd" => false,
-      "datumopgegeven" => $now,
+      "datumopgegeven" => $now["now"],
       "foto" => $fields["picture"]
     ); 
 
