@@ -29,10 +29,11 @@ include_once("../functions/get_details_city_influencers.php");
 
 include_once("../functions/get_details_categories.php");
 
-include_once("../functions/post_create_task.php"); 
+include_once("../functions/get_details_tasks.php"); 
 
   // POST
 include_once("../functions/post_create_admin.php");
+include_once("../functions/post_create_task.php"); 
 
   // PUT
 include_once("../functions/put_isactive.php");
@@ -288,10 +289,21 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
       }    
     }
     
-    
   }
   
-   
+  // /api/tasks...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/tasks") === 0) {
+      
+    // /api/tasks
+    $details = get_details_tasks();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Tasks of city successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    } 
+    
+  }
   
   
   
