@@ -3,7 +3,7 @@
 
   function put_update_task($fields){
     
-    if (!is_numeric($fields["postid"])){
+    if (!is_numeric($fields["taskid"])){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
  
