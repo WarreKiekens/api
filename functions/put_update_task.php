@@ -33,16 +33,13 @@
     die();
     
       
-    // TODO: validate input
     $values = array(
-      "id" => $fields["taskid"],
-      "winnaarid" => $fields["winnerid"],
-      "gebruikersnaam" => $fields["username"],
-      "wachtwoord" => $fields["password"],
-      "naam" => $fields["name"],
-      "postcode" => $fields["postcode"],
-      "emailadres" => $fields["email"],
-      "foto" => $fields["photo"]
+      "titel" => $fields["title"],
+      //"omschrijving" => $fields["description"],
+      //"aantalpuntenwaard" => $fields["totalpointsworth"],
+      //"isuitgevoerd" => false,
+      //"datumopgegeven" => $now["now"],
+      //"foto" => $fields["picture"]
     ); 
 
 
@@ -53,7 +50,7 @@
           unset($values[$key]);
     }
     
-    $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["postid"]));
+    $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["taskid"]));
     
     
     if (!$result) {
