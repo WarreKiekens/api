@@ -59,7 +59,7 @@
       
         $values["datumuitgevoerd"] = $now["now"];
         $values["isuitgevoerd"] = true;
-        $values["winnaarid"] = $winnerid;
+        $values["winnaarid"] = $fields["winnerid"];
       
     }
     
