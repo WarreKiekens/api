@@ -25,7 +25,16 @@
     
     if ($data == null) {
       return array("valid" => false, "code" => 200, "message" => "Index out of reach!", "error" => "IndexOverflow");
-    } 
+    }
+    
+    // Convert categories into proper array
+    $index = 0;
+    foreach ($data as $influencer){ 
+      $data[$index]["categories"] = explode(";", $influencer["categories"]);
+      $index++;
+    }
+    
+    
     return array("valid" => true, "data" => $data);
   };
 ?>
