@@ -3,6 +3,10 @@
 
   function put_verify_post($fields){
        
+        var_dump($fields);
+    
+    die();
+    
     if (!is_numeric($fields["id"])){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
@@ -13,9 +17,7 @@
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
-    var_dump($fields);
-    
-    die();
+
       
     $values = array(
       "gebruikersnaam" => $fields["username"],
