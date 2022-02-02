@@ -4,7 +4,7 @@
   function get_details_tasks(){
     
     //
-    // TODO !!!!!!!!!!!!!
+    // TODO -> fix influencer perspective !!!!!!!!!!!!!
     //
     
     // Authorization
@@ -24,6 +24,13 @@
     if ($data == null) {
       return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
     } 
+    
+    // Convert categories into proper array
+    $index = 0;
+    foreach ($data as $influencer){ 
+      $data[$index]["categories"] = explode(";", $influencer["categories"]);
+      $index++;
+    }
         
     
     return array("valid" => true, "data" => $data);
