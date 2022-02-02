@@ -2,6 +2,8 @@
   include_once("../config.php");
 
   function get_details_task($id){
+    
+    var_dump($_GET);
         
     if (!is_numeric($id)){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
@@ -16,7 +18,6 @@
     $query = "SELECT count(*) FROM opdracht where stadid = $1";
     $data = fetch_query_params($query, array($GLOBALS["account_id"]));
     
-    var_dump($data);
     
     //$query = "SELECT id,gebruikersnaam,naam,postcode,isactief,isnew,emailadres,(select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount  FROM stad where id = $1";
     //$data = fetch_query_params($query, array($id));
