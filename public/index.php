@@ -302,7 +302,13 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     
     // /api/tasks/{id}
     if (isset($_GET["tasks"]) && $_GET["tasks"] != "") {
-    
+      $details = get_details_task($_GET["id"]);
+
+      if ($details["valid"]) {
+        sendResponse(200, "Tasks of city successfully requested!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      } 
     }
       
     // /api/tasks
