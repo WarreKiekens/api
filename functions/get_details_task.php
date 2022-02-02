@@ -3,8 +3,6 @@
 
   function get_details_task($id){
     
-    var_dump($_GET);
-        
     if (!is_numeric($id)){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
@@ -18,9 +16,12 @@
     $query = "SELECT count(*) FROM opdracht where stadid = $1";
     $data = fetch_query_params($query, array($GLOBALS["account_id"]));
     
+    if ($data["count"] < 1) {
+      $data = null;
+    }
     
-    //$query = "SELECT id,gebruikersnaam,naam,postcode,isactief,isnew,emailadres,(select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount  FROM stad where id = $1";
-    //$data = fetch_query_params($query, array($id));
+    $query = "SELECT *,(select count(*) from post where opdrachtid = opdracht.id) as postcount, (select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from opdrachtcategorie where opdrachtid = opdracht.id)) as categories FROM opdracht where stadid = $1 and id = $2 ORDER BY ID;";
+    $data = fetch_query_params($query, array($GLOBALS["account_id"], $id));
     
     if ($data == null) {
       return array("valid" => false, "code" => 200, "message" => "Index out of reach!", "error" => "IndexOverflow");
