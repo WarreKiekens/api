@@ -14,7 +14,7 @@
 
    
     if ($GLOBALS["account_type"] == "stad") {
-      $query = "SELECT * FROM opdracht where stadid = $1 ORDER BY ID;";
+      $query = "SELECT *,(select count(*) from post where opdrachtid = opdracht.id) as postcount, (select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from opdrachtcategorie where opdrachtid = opdracht.id)) as categories FROM opdracht where stadid = $1 ORDER BY ID;";
       $data = fetch_query_params($query, array($GLOBALS["account_id"]));
     } else {
       $query = "SELECT * FROM opdracht where categorie in (...) ORDER BY ID;";
