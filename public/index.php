@@ -39,6 +39,7 @@ include_once("../functions/post_create_task.php");
 include_once("../functions/put_isactive.php");
 include_once("../functions/put_update_account.php");
 include_once("../functions/put_update_task.php");
+include_once("../functions/put_verify_post.php");
 
 
 
