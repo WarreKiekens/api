@@ -299,6 +299,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // /api/tasks/{id}/posts
     if (isset($_GET["tasks"]) && $_GET["tasks"] != "" && isset($_GET["posts"]) && $_GET["posts"] == "") {
     
+      $details = get_details_posts_task($_GET["tasks"]);
+
+      if ($details["valid"]) {
+        sendResponse(200, "Tasks of city successfully requested!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      } 
+      
     }
     
     // /api/tasks/{id}
