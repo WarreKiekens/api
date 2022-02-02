@@ -384,11 +384,27 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
   }
   
   
-  // /api/tasks
+  // /api/tasks...
   if (strpos($_SERVER["REQUEST_URI"], "/api/tasks") === 0) {
     
-     $values = $_PUT;
-     $details = put_update_task($values);
+    // /api/tasks/{id}/posts/{id}  => perspective of city
+    if (isset($_GET["tasks"]) && $_GET["tasks"] != "" && isset($_GET["posts"]) && $_GET["posts"] != "") {
+      
+      $values = $_PUT;
+      $details = put_verify_post($values);
+
+      if ($details["valid"]) {
+        sendResponse(200, "Task successfully updated!", $details["data"]);
+      } else {
+        sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+      }
+      
+    }
+    
+    
+    // /api/tasks
+    $values = $_PUT;
+    $details = put_update_task($values);
     
     if ($details["valid"]) {
       sendResponse(200, "Task successfully updated!", $details["data"]);
