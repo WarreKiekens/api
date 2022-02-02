@@ -51,7 +51,7 @@
         "naam" => $fields["name"],
         "postcode" => $fields["postcode"],
         "emailadres" => $fields["email"],
-        "picture" -> $fields["picture"] 
+        "picture" => $fields["picture"] 
       ); 
     } 
 
