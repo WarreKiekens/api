@@ -3,6 +3,10 @@
 
   function get_details_tasks(){
     
+    //
+    // TODO !!!!!!!!!!!!!
+    //
+    
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad","influencer"))) {
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
