@@ -30,6 +30,7 @@ include_once("../functions/get_details_city_influencers.php");
 include_once("../functions/get_details_categories.php");
 
 include_once("../functions/get_details_tasks.php"); 
+include_once("../functions/get_details_task.php"); 
 
   // POST
 include_once("../functions/post_create_admin.php");
