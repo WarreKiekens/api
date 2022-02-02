@@ -293,6 +293,16 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   
   // /api/tasks...
   if (strpos($_SERVER["REQUEST_URI"], "/api/tasks") === 0) {
+    
+    // /api/tasks/{id}/posts
+    if (isset($_GET["tasks"]) && $_GET["tasks"] != "" && isset($_GET["posts"]) && $_GET["posts"] == "") {
+    
+    }
+    
+    // /api/tasks/{id}
+    if (isset($_GET["tasks"]) && $_GET["tasks"] != "") {
+    
+    }
       
     // /api/tasks
     $details = get_details_tasks();
