@@ -18,7 +18,7 @@
     $data = fetch_query_data($res);
     
     // check validation
-    
+    echo json_encode($data); 
     die();
     $result = pg_update($GLOBALS["conn"], $GLOBALS["account_type"], $values, array("id" => $GLOBALS["account_id"]));
     
