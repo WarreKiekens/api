@@ -24,7 +24,7 @@
     }
     
     
-    $query = "SELECT * FROM post where opdrachtid = $1 ORDER BY ID;";
+    $query = "SELECT *, (select gebruikersnaam from influencer where id = post.influencerid) as gebruikersnaam FROM post where opdrachtid = $1 ORDER BY ID;";
     $data = fetch_query_params($query, array($id));
     
     
