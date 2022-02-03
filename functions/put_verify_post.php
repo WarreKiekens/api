@@ -3,9 +3,6 @@
 
   function put_verify_post($fields){
        
-        var_dump($fields);
-    
-    die();
     
     if (!is_numeric($fields["id"])){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
@@ -17,22 +14,12 @@
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
-
-      
-    $values = array(
-      "gebruikersnaam" => $fields["username"],
-      "wachtwoord" => $fields["password"],
-      "naam" => $fields["name"],
-      "postcode" => $fields["postcode"],
-      "emailadres" => $fields["email"],
-    );
-
-    // unset all null values
-    foreach($values as $key=>$value){
-      if(is_null($value) || $value == '')
-          unset($values[$key]);
-    }
+    $res = pg_query("select opdrachtid, (select stadid from opdracht where id = opdrachtid) as stadid from post;");
+    $data = fetch_query_data($res);
     
+    // check validation
+    
+    die();
     $result = pg_update($GLOBALS["conn"], $GLOBALS["account_type"], $values, array("id" => $GLOBALS["account_id"]));
     
     
