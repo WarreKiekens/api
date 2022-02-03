@@ -56,6 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     $_PUT = array();
     parse_raw_http_request($_PUT);
     
+  } elseif (isset($_SERVER["QUERY_STRING"])) {
+    parse_str(file_get_contents("php://input"),$put_vars);
+    parse_str($_SERVER["QUERY_STRING"], $params);
+    
+    $_PUT = array_merge($put_vars, $params);
   } else {
     $_PUT = $rawBody;
   }
