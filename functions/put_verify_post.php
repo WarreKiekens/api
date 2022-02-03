@@ -4,7 +4,7 @@
   function put_verify_post($fields){
        
     
-    if (!is_numeric($fields["id"])){
+    if (!is_numeric($fields["tasks"]) || !is_numeric($fields["posts"])){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
         
@@ -16,6 +16,10 @@
     
     $res = pg_query("select id,opdrachtid, (select stadid from opdracht where id = opdrachtid) as stadid from post;");
     $data = fetch_query_data($res);
+    
+    if (!in_array(array( "id" => $fields["id"], "opdrachtid" ), $data)) {
+      
+    }
     
     // check validation
     echo json_encode($data); 
