@@ -14,7 +14,7 @@
       //}
     }
         
-    $query = "SELECT id,gebruikersnaam,naam,postcode,isactief,isnew,emailadres,(select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount  FROM stad where id = $1";
+    $query = "SELECT id,gebruikersnaam,naam,postcode,isactief,isnew,emailadres,(select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount, picture as image FROM stad where id = $1";
     $data = fetch_query_params($query, array($id));
     
     if ($data == null) {
