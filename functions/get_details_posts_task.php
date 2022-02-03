@@ -6,9 +6,7 @@
     if (!is_numeric($id)){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
     }
-    
-    // TODO: request all posts of a task, done by a city (are only allowed to query their own tasks)
-    
+
     
     // Authorization
     if (!in_array($GLOBALS["account_type"], array("stad"))) {
