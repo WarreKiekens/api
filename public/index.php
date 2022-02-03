@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     $_PUT = array();
     parse_raw_http_request($_PUT);
     
-  } elseif (isset($_SERVER["QUERY_STRING"])) {
+  } elseif (isset($_SERVER["QUERY_STRING"]) & $_SERVER["QUERY_STRING"] != "") {
     parse_str(file_get_contents("php://input"),$put_vars);
     parse_str($_SERVER["QUERY_STRING"], $params);
     
