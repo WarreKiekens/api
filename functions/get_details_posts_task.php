@@ -24,8 +24,8 @@
     }
     
     
-    $query = "SELECT * FROM post where stadid = $1 and opdrachtid = $2 ORDER BY ID;";
-    $data = fetch_query_params($query, array($GLOBALS["account_id"], $id));
+    $query = "SELECT * FROM post where opdrachtid = $1 ORDER BY ID;";
+    $data = fetch_query_params($query, array($id));
     
     
     return array("valid" => true, "data" => $data);
