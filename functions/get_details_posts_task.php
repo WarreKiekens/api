@@ -28,17 +28,6 @@
     
     $query = "SELECT * FROM post where stadid = $1 and opdrachtid = $2 ORDER BY ID;";
     $data = fetch_query_params($query, array($GLOBALS["account_id"], $id));
-
-    if ($data == null) {
-      return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
-    } 
-    
-    // Convert categories into proper array
-//    $index = 0;
-//    foreach ($data as $influencer){ 
-//      $data[$index]["categories"] = explode(";", $influencer["categories"]);
-//      $index++; 
-//    }
     
     
     return array("valid" => true, "data" => $data);
