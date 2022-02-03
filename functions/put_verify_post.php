@@ -18,7 +18,7 @@
     $data = fetch_query_data($res);
     
     if (!in_array(array( "id" => $fields["id"], "opdrachtid" ), $data)) {
-      
+      return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
     // check validation
