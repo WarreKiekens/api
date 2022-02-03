@@ -14,7 +14,7 @@
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
-    $res = pg_query("select opdrachtid, (select stadid from opdracht where id = opdrachtid) as stadid from post;");
+    $res = pg_query("select id,opdrachtid, (select stadid from opdracht where id = opdrachtid) as stadid from post;");
     $data = fetch_query_data($res);
     
     // check validation
