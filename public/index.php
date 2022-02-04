@@ -337,8 +337,20 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     
   }
   
-  
-  
+  // /api/posts...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/posts") === 0) {
+    
+    // /api/posts
+    $details = get_details_posts();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Posts of influencer successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    } 
+    
+        
+  }
 
 }  
 
@@ -371,8 +383,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
-  }
-  
+  } 
   
 }
 
