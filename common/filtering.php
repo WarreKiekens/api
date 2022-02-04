@@ -39,8 +39,7 @@ function filtering_influencers() {
 
   if (in_array($_GET["where"], array("leeftijd","Leeftijd"))) {
   
-  }
-  if (in_array($_GET["where"], array("volgers","Volgers"))) {
+  } elseif (in_array($_GET["where"], array("volgers","Volgers"))) {
     switch ($_GET["like"]) {
       case "<500":
         $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE (aantalvolgersinstagram < 500 and aantalvolgersfacebook < 500 and aantalvolgerstiktok < 500) and id in (select influencerid from influencerstad where stadid = $1) ORDER BY ID;";
@@ -52,7 +51,7 @@ function filtering_influencers() {
     }
     
     
-  } if (in_array($_GET["where"], array("geslacht","Geslacht"))) {
+  } elseif (in_array($_GET["where"], array("geslacht","Geslacht"))) {
     $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE {$_GET['where']} = $1 and id in (select influencerid from influencerstad where stadid = $2) ORDER BY ID;";
     $data = fetch_query_params($query, array($_GET["like"], $GLOBALS["account_id"]));
     
