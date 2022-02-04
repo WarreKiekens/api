@@ -17,7 +17,7 @@
     $res = pg_query("select id,opdrachtid, (select stadid from opdracht where id = opdrachtid) as stadid from post;");
     $data = fetch_query_data($res);
     
-    if (!in_array(array( "id" => $fields["id"], "opdrachtid" ), $data)) {
+    if (!in_array(array( "id" => $fields["posts"], "opdrachtid" => $fields["tasks"], "stadid" => $GLOBALS["account_id"]), $data)) {
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
