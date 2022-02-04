@@ -324,7 +324,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
       $details = get_details_task($_GET["tasks"]);
 
       if ($details["valid"]) {
-        sendResponse(200, "Tasks of city successfully requested!", $details["data"]);
+        sendResponse(200, "Tasks successfully requested!", $details["data"]);
       } else {
         sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
       } 
@@ -334,7 +334,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $details = get_details_tasks();
     
     if ($details["valid"]) {
-      sendResponse(200, "Tasks of city successfully requested!", $details["data"]);
+      sendResponse(200, "Tasks successfully requested!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     } 
