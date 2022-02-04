@@ -55,7 +55,7 @@ function filtering_influencers() {
   } elseif (in_array($_GET["where"], array("categories", "Categories"))) {
    
     $sql = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories FROM Influencer where id in (select influencerid from influencerstad where stadid = $1) ORDER BY ID;";
-    $data = fetch_query_params($sql, array($GLOBALS["account_id"]));
+    $res = fetch_query_params($sql, array($GLOBALS["account_id"]));
 
     // Convert categories into proper array
     $data = array();
