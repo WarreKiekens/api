@@ -33,6 +33,10 @@ include_once("../functions/get_details_tasks.php");
 include_once("../functions/get_details_task.php"); 
 include_once("../functions/get_details_posts_task.php"); 
 
+// todo
+include_once("../functions/get_details_post.php"); 
+
+
   // POST
 include_once("../functions/post_create_admin.php");
 include_once("../functions/post_create_task.php"); 
