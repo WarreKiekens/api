@@ -49,6 +49,18 @@ function filtering_influencers() {
         $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE (aantalvolgersinstagram > 500 or aantalvolgersfacebook > 500 or aantalvolgerstiktok > 500) and id in (select influencerid from influencerstad where stadid = $1) ORDER BY ID;";
         $data = fetch_query_params($query, array($GLOBALS["account_id"]));
         break;
+      case ">1000":
+        $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE (aantalvolgersinstagram > 1000 or aantalvolgersfacebook > 1000 or aantalvolgerstiktok > 1000) and id in (select influencerid from influencerstad where stadid = $1) ORDER BY ID;";
+        $data = fetch_query_params($query, array($GLOBALS["account_id"]));
+        break;
+      case ">2000":
+        $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE (aantalvolgersinstagram > 2000 or aantalvolgersfacebook > 2000 or aantalvolgerstiktok > 2000) and id in (select influencerid from influencerstad where stadid = $1) ORDER BY ID;";
+        $data = fetch_query_params($query, array($GLOBALS["account_id"]));
+        break;
+      case ">5000":
+        $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE (aantalvolgersinstagram > 5000 or aantalvolgersfacebook > 5000 or aantalvolgerstiktok > 5000) and id in (select influencerid from influencerstad where stadid = $1) ORDER BY ID;";
+        $data = fetch_query_params($query, array($GLOBALS["account_id"]));
+        break;
       default:
         break;
     }
