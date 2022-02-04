@@ -61,7 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     parse_raw_http_request($_PUT);
     
   } elseif (isset($_SERVER["QUERY_STRING"]) & $_SERVER["QUERY_STRING"] != "") {
-    parse_str(file_get_contents("php://input"),$put_vars);
+    //parse_str(file_get_contents("php://input"),$put_vars);
+    $put_vars = file_get_contents("php://input", false, stream_context_get_default(), 0, $_SERVER["CONTENT_LENGTH"]);
     parse_str($_SERVER["QUERY_STRING"], $params);
     
     $_PUT = array_merge($put_vars, $params);
