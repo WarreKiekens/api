@@ -21,10 +21,16 @@
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to update this resource", "error" => "ForbiddenContent");
     }
     
-    // check validation
-    echo json_encode($data); 
-    die();
-    $result = pg_update($GLOBALS["conn"], $GLOBALS["account_type"], $values, array("id" => $GLOBALS["account_id"]));
+    $values = array(
+        "isgoedgekeurd" => $fields["isapproved"],
+    );
+    
+    foreach($values as $key=>$value){
+      if(is_null($value) || $value == '')
+          unset($values[$key]);
+    }
+    
+    $result = pg_update($GLOBALS["conn"], "post", $values, array("id" => $fields["posts"]));
     
     
     if (!$result) {
