@@ -348,7 +348,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $details = get_details_posts();
     
     if ($details["valid"]) {
-      sendResponse(200, "Posts of influencer successfully requested!", $details["data"]);
+      sendResponse(200, "Posts successfully requested!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     } 
