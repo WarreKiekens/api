@@ -23,6 +23,7 @@
     
     $values = array(
         "isgoedgekeurd" => $fields["isapproved"],
+        "commentaarstad" => $fields["commentscity"]
     );
     
     $result = pg_update($GLOBALS["conn"], "post", $values, array("id" => $fields["posts"]));
