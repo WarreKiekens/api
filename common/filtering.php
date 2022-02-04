@@ -43,6 +43,8 @@ function filtering_influencers() {
 //      return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
 //    }
     
+    $_GET["like"] = clean(explode("'",$_GET["like"]));
+    var_dump($_GET);
     $query = "SELECT id,voornaam,familienaam,geslacht,gebruikersnaam,profielfoto,adres,postcode,stad,geboortedatum,telefoonnummer,emailadres,gebruikersnaamInstagram,gebruikersnaamFacebook,gebruikersnaamTiktok,infoovervolgers,AantalVolgersInstagram,AantalVolgersFacebook,AantalVolgersTiktok,badge,aantalpunten,(select STRING_AGG (naam, ';') AS column FROM categorie where categorie.id in (select categorieid from influencercategorie where influencerid = influencer.id)) as categories, (select EXTRACT(YEAR FROM age(now(), geboortedatum))) as leeftijd FROM Influencer WHERE ((select EXTRACT(YEAR FROM age(now(), geboortedatum))) < $2 and (select EXTRACT(YEAR FROM age(now(), geboortedatum))) > $1) and id in (select influencerid from influencerstad where stadid = $3) ORDER BY ID;";
     $data = fetch_query_params($query, array($_GET["like"][0],$_GET["like"][1],$GLOBALS["account_id"]));
     
