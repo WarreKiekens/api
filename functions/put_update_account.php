@@ -40,7 +40,8 @@
         "aantalvolgerstiktok" => $fields["totalfollowerstiktok"],
         "badge" => $fields["badge"],
         "aantalpunten" => $fields["totalpoints"],     
-        "rijksregisternummer" => $fields["registernumber"]
+        "rijksregisternummer" => $fields["registernumber"],
+        "aantalpunten" => $fields["totalpoints"]
       );      
     
     } elseif ($GLOBALS["account_type"] == "stad") {
