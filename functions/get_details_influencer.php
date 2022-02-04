@@ -15,10 +15,10 @@
     }
 
     
-    $query = "influencerid from influencerStad where stadid = $1";
-    $influencers = fetch_query_params($query, array($id));
+    $query = "select influencerid as id from influencerStad where stadid = $1";
+    $influencers = fetch_query_params($query, array($GLOBALS["account_id"]));
     
-    if (!in_array($id, $influencers)) {
+    if (!in_array(array("id" => $id), $influencers)) {
         return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
 
