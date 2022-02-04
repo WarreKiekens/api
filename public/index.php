@@ -433,7 +433,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
       $details = put_verify_post($values);
 
       if ($details["valid"]) {
-        sendResponse(200, "Task successfully updated!", $details["data"]);
+        sendResponse(200, "Post successfully updated!", $details["data"]);
       } else {
         sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
       }
