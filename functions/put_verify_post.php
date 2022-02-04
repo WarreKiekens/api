@@ -32,7 +32,7 @@
       return array("valid" => false, "code" => 500, "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
     }     
     
-    return array("valid" => true, "code" => 200, "message" => "Successfully updated account");  
+    return array("valid" => true, "code" => 200);  
     
   };
 ?>
