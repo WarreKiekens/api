@@ -13,11 +13,11 @@
     }
 
     // all accepted rewards
-    $query = "select *,true as isClaimed from reward where id in (select rewardid from influencerreward where influencerid = $1);";
+    $query = "select *,true as isClaimed from reward where id in (select rewardid from influencerreward where influencerid = $1) order by id;";
     $data1 = fetch_query_params($query, array($id));
 
     // all other rewards
-    $query = "select *,false as isClaimed from reward where id not in (select id from reward where id in (select rewardid from influencerreward where influencerid = $1));";
+    $query = "select *,false as isClaimed from reward where id not in (select id from reward where id in (select rewardid from influencerreward where influencerid = $1)) order by id;";
     $data2 = fetch_query_params($query, array($id));
     
     $allRewards = array_merge($data1,$data2);
