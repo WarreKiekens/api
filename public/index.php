@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $details = get_details_rewards($GLOBALS["account_id"]);
       
     if ($details["valid"]) {
-      sendResponse(200, "Posts successfully requested!", $details["data"]);
+      sendResponse(200, "Rewards successfully requested!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }  
