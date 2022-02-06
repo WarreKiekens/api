@@ -234,6 +234,18 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     sendResponse(200, "Validation details successfully requested!", array("id" => $GLOBALS["account_id"], "type" => $GLOBALS["account_type"], "issuper" => $GLOBALS["account_issuper"]));
   }
   
+  // /api/rewards...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/rewards") === 0) {
+     
+    $details = get_details_rewards($_GET["account_id"]);
+      
+    if ($details["valid"]) {
+      sendResponse(200, "Posts successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }  
+  }
+  
   // /api/influencers...
   if (strpos($_SERVER["REQUEST_URI"], "/api/influencers") === 0) {
      
