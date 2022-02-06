@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
   // /api/rewards...
   if (strpos($_SERVER["REQUEST_URI"], "/api/rewards") === 0) {
      
-    $details = get_details_rewards($_GET["account_id"]);
+    $details = get_details_rewards($GLOBALS["account_id"]);
       
     if ($details["valid"]) {
       sendResponse(200, "Posts successfully requested!", $details["data"]);
