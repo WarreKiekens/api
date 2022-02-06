@@ -22,6 +22,6 @@
     
     $allRewards = array_merge($data1,$data2);
     
-    return array("valid" => true, "data" => $data);
+    return array("valid" => true, "data" => $allRewards);
   };
 ?>
