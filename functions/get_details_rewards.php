@@ -22,6 +22,8 @@
     
     if ($data1 == null) {
       $allRewards = $data2;    
+    } elseif ($data2 == null) {
+      $allRewards = $data1;    
     } else {
       $allRewards = array_merge($data1,$data2);    
     }
