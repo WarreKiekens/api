@@ -20,7 +20,11 @@
     $query = "select *,false as isClaimed from reward where id not in (select id from reward where id in (select rewardid from influencerreward where influencerid = $1)) order by id;";
     $data2 = fetch_query_params($query, array($id));
     
-    $allRewards = array_merge($data1,$data2);
+    if ($data1 == null) {
+      $allRewards = $data2;    
+    } else {
+      $allRewards = array_merge($data1,$data2);    
+    }
     
     return array("valid" => true, "data" => $allRewards);
   };
