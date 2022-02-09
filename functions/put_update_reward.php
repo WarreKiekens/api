@@ -17,6 +17,7 @@
       
       $values = array(
         "rewardid" => $fields["rewardid"],
+        "influencerid" => $GLOBALS["account_id"],
       );
       
       $result = pg_insert($GLOBALS["conn"], "influencerreward", $values);
