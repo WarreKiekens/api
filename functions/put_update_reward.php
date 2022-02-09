@@ -35,15 +35,6 @@
       if (!in_array($fields["rewardid"], $origin)){
           return array("valid" => false, "code" => 403, "message" => "This resource doesn't exist.", "error" => "ForbiddenContent");
       }
-
-      // check if task already ended
-      $query = "SELECT isuitgevoerd from opdracht where id = $1";      
-      $isuitgevoerd = fetch_query_params($query, array($fields["taskid"]))[0]["isuitgevoerd"];
-
-      if(is_null($isuitgevoerd) || $isuitgevoerd == '' || $isuitgevoerd == "t") {
-          return array("valid" => false, "code" => 422, "message" => "Task already ended, unable to update.", "error" => "UnprocessableEntity");
-      }
-
       
       $values = array(
         "rewardid" => $fields["rewardid"],
