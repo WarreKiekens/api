@@ -48,7 +48,7 @@ include_once("../functions/put_isactive.php");
 include_once("../functions/put_update_account.php");
 include_once("../functions/put_update_task.php");
 include_once("../functions/put_verify_post.php");
-include_once("../functions/put_update_rewards.php");
+include_once("../functions/put_update_reward.php");
 
 
 
