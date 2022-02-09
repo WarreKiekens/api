@@ -48,7 +48,7 @@
             unset($values[$key]);
       }
 
-      $result = pg_delete($GLOBALS["conn"], 'infuencerreward', $values);
+      $result = pg_delete($GLOBALS["conn"], 'influencerreward', $values);
 
     
     } else {
