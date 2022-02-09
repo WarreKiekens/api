@@ -48,6 +48,7 @@ include_once("../functions/put_isactive.php");
 include_once("../functions/put_update_account.php");
 include_once("../functions/put_update_task.php");
 include_once("../functions/put_verify_post.php");
+include_once("../functions/put_update_rewards.php");
 
 
 
@@ -463,8 +464,24 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
       sendResponse(200, "Task successfully updated!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    } 
+    
+    
+  }
+  
+  // /api/rewards...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/rewards") === 0) {
+    // /api/rewards
+    $values = $_PUT;
+    $details = put_update_reward($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Reward successfully updated!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
   }
+  
   
   
 }
