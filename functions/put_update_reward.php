@@ -28,7 +28,7 @@
       $influencerids = fetch_query_params($query, array($GLOBALS['account_id']));
 
       $origin = array();
-      foreach ($origin as $influencerid){ 
+      foreach ($influencerids as $influencerid){ 
         array_push($origin, $influencerid["influencerid"]);
       }
 
