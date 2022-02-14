@@ -34,9 +34,8 @@ include_once("../functions/get_details_rewards.php");
 include_once("../functions/get_details_tasks.php"); 
 include_once("../functions/get_details_task.php"); 
 include_once("../functions/get_details_posts_task.php"); 
-
-// todo
 include_once("../functions/get_details_posts.php"); 
+include_once("../functions/get_details_admins.php"); 
 
 
   // POST
