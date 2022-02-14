@@ -25,20 +25,21 @@
     } elseif ($fields["type"] == "unclaim") {
       // Remove
       
-      $query = "SELECT * from influencerreward where rewardid = $1";      
-      $influencerids = fetch_query_params($query, array($fields["rewardid"]));
+      $query = "SELECT * from influencerreward where influencerid = $1";      
+      $influencerids = fetch_query_params($query, array($GLOBALS["account_id"]));
 
-      $origin = array();
-      foreach ($influencerids as $influencerid){ 
-        array_push($origin, $influencerid["influencerid"]);
-      }
+      //$origin = array();
+      //foreach ($influencerids as $influencerid){ 
+      //  array_push($origin, $influencerid["influencerid"]);
+      //}
 
-      if (!in_array($fields["rewardid"], $origin)){
+      if (!in_array(array("influencerid" => $GLOBALS["account_id"], "rewardid" => $fields["rewardid"]), $influencerids)){
           return array("valid" => false, "code" => 403, "message" => "This resource doesn't exist.", "error" => "ForbiddenContent");
       }
       
       $values = array(
         "rewardid" => $fields["rewardid"],
+        "influencerid" => $GLOBALS["account_id"],
       );
       
 
