@@ -4,7 +4,7 @@
   function get_details_admins(){
     
     // Authorization
-echo $GLOBALS["issuper"];    
+echo json_encode($GLOBALS);    
     if ($GLOBALS["issuper"]) {
     }
     
