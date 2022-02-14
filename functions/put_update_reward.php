@@ -22,6 +22,10 @@
       
       $result = pg_insert($GLOBALS["conn"], "influencerreward", $values);
       
+      if (!$result) {
+        return array("valid" => false, "code" => 403, "message" => "This resource doesn't exist.", "error" => "ForbiddenContent");
+      }     
+      
     } elseif ($fields["type"] == "unclaim") {
       // Remove
       
