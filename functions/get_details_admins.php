@@ -4,8 +4,9 @@
   function get_details_admins(){
     
     // Authorization
-echo json_encode($GLOBALS);    
-    if ($GLOBALS["issuper"]) {
+    echo $GLOBALS["account_issuper"];
+    if ($GLOBALS["account_issuper"]) {
+      
     }
     
     
