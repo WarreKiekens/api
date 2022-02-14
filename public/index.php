@@ -368,11 +368,23 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
       sendResponse(200, "Posts successfully requested!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
-    } 
+    }        
+  }
+ 
+  // /api/admins...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/admins") === 0) {
     
-        
+    // /api/admins
+    $details = get_details_admins();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Admins successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }   
   }
 
+  
 }  
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
