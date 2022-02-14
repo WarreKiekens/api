@@ -9,7 +9,7 @@ echo $GLOBALS["issuper"];
     }
     
     
-    $res = pg_query("SELECT id,naam,postcode,isactief,isnew,emailadres, (select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount,picture FROM stad ORDER BY id");
+    $res = pg_query("SELECT id, gebruikersnaam, voornaam, familienaam, emailadres, isactief, issuper, picture FROM admin ORDER BY id");
     $data = fetch_query_data($res);
 
     
