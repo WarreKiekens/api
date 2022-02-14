@@ -26,7 +26,7 @@
       // Remove
       
       $query = "SELECT * from influencerreward where rewardid = $1";      
-      $influencerids = fetch_query_params($query, array($GLOBALS['account_id']));
+      $influencerids = fetch_query_params($query, array($fields["rewardid"]));
 
       $origin = array();
       foreach ($influencerids as $influencerid){ 
