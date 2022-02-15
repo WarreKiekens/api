@@ -48,6 +48,7 @@ include_once("../functions/put_update_account.php");
 include_once("../functions/put_update_task.php");
 include_once("../functions/put_verify_post.php");
 include_once("../functions/put_update_reward.php");
+include_once("../functions/put_update_admin.php");
 
 
 
@@ -488,6 +489,19 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     
     if ($details["valid"]) {
       sendResponse(200, "Reward successfully updated!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
+  }
+  
+  // /api/admins...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/admins") === 0) {
+    // /api/admins
+    $values = $_PUT;
+    $details = put_update_admin($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Admin successfully updated!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
