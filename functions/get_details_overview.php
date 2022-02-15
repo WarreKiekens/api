@@ -4,7 +4,7 @@
   function get_details_overview(){
     
     // Authorization
-    if (!in_array($GLOBALS["account_type"], array("admin"))){
+    if (!in_array($GLOBALS["account_type"], array("stad"))){
       return array("valid" => false, "code" => 403, "message" => "Unauthorized to access this resource", "error" => "ForbiddenContent");
     }
 
