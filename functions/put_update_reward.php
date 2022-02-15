@@ -15,7 +15,7 @@
     if ($fields["type"] == "claim") {
       // Check if enough points
       $query = "select SUM(aantalpunten - (select tegoed from reward where id = $1)) from influencer where id = $2";
-      $subtract = fetch_query_params($query, array($fields["rewardid"], $GLOBALS["account_id"]));
+      $subtract = fetch_query_params($query, array($fields["rewardid"], $GLOBALS["account_id"]))[0]["sum"];
       
       if ($subtract < 0) {
         return array("valid" => false, "code" => 505, "message" => "You don't have enough points to claim this reward!", "error" => "InsufficientFunds");
