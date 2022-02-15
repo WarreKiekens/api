@@ -69,9 +69,23 @@
     if ($fields["categories"] != null) {
       pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $fields["taskid"]));
       
+      
       foreach ($fields["categories"] as $categorieid) {
-        $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $fields["taskid"],"categorieid" => $categorieid));
+        if (!is_numeric($categorieid)){
+          
+          $query = "SELECT id from categorie where naam ilike $1 limit 1";      
+          $categorieid = fetch_query_params($query, array($categorieid))[0]["id"];
+          
+          if ($categorieid == null) {
+            pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $opdrachtid));
+            
+            return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed because given category doesn't exist!", "error" => "InternalError");  
+          }
+        }
+        
+        $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $opdrachtid,"categorieid" => $categorieid));
       }
+
     }
     
     if (!$result) {
