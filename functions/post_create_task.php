@@ -28,8 +28,6 @@
     $res = pg_query("select id from opdracht order by id desc limit 1;");
     $opdrachtid = fetch_query_data($res)[0]["id"];
     
-    echo json_encode($opdrachtid);
-    
     foreach ($fields["categories"] as $categorieid) {
       $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $opdrachtid,"categorieid" => $categorieid));
     }
