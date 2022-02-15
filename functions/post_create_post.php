@@ -15,7 +15,7 @@
     $values = array(
       "influencerid" => $GLOBALS["account_id"],
       "foto" => $fields["picture"],
-      "omschrijving" => $fields["description"],
+      "beschrijving" => $fields["description"],
       "aantallikes" => $fields["totallikes"],
       "aantalcomments" => $fields["totalcomments"],
       "bereik" => $fields["reach"],
