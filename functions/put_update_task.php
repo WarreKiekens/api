@@ -69,9 +69,11 @@
     if (is_numeric($fields["winnerid"])) {
       
       // Winner
-      $query = "select aantalpuntenwaard from opdracht where id = $1";
-      $winnervalue = fetch_query_params($query, array($fields["taskid"]))[0]["aantalpuntenwaard"];
+//      $query = "select aantalpuntenwaard from opdracht where id = $1";
+  //    $winnervalue = fetch_query_params($query, array($fields["taskid"]))[0]["aantalpuntenwaard"];
       
+      $query = "select SUM(aantalpunten + (select aantalpuntenwaard from opdracht where id = $1)) from influencer where id = $2";
+      $winnervalue = fetch_query_params($query, array($fields["taskid"], $GLOBALS["account_id"]))[0]["sum"];
       
       // Validated posts
       $query = "select nietwinnaarreward from stad where id = $1";
