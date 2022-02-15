@@ -1,7 +1,7 @@
 <?php
   include_once("../config.php");
 
-  function put_update_account($fields){
+  function put_update_admin($fields){
        
     if (!is_numeric($fields["id"])){
       return array("valid" => false, "code" => 422, "message" => "The type of given Entity isn't supported!", "error" => "UnprocessableEntity");
