@@ -37,7 +37,7 @@
           $categorieid = fetch_query_params($query, array($categorieid))[0]["id"];
           
           if ($categorieid == null) {
-            pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $fields["taskid"]));
+            pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $opdrachtid));
             
             return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed because given category doesn't exist!", "error" => "InternalError");  
           }
