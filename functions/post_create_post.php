@@ -20,7 +20,13 @@
       "aantalcomments" => $fields["totalcomments"],
       "bereik" => $fields["reach"],
       "opdrachtid" => $fields["taskid"]
-    ); 
+    );
+    
+    // unset all null values
+    foreach($values as $key=>$value){
+      if(is_null($value) || $value == '')
+          unset($values[$key]);
+    }
 
     $result = pg_insert($GLOBALS["conn"], "post", $values);
 
