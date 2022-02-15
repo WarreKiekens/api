@@ -24,6 +24,10 @@
     ); 
 
     $result = pg_insert($GLOBALS["conn"], "opdracht", $values);
+    
+    foreach ($fields["categories"] as $categorieid) {
+      echo $categorieid;
+    }
 
 
     if ($result) {
