@@ -41,6 +41,7 @@ include_once("../functions/get_details_admins.php");
   // POST
 include_once("../functions/post_create_admin.php");
 include_once("../functions/post_create_task.php"); 
+include_once("../functions/post_create_post.php"); 
 
   // PUT
 include_once("../functions/put_isactive.php");
@@ -416,7 +417,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }
-  } 
+  }
+  
+  if (strpos($_SERVER["REQUEST_URI"], "/api/posts") === 0) {
+    
+     $values = $_POST;
+     $details = post_create_post($values);
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Post successfully created!");
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }
+  }
   
 }
 
