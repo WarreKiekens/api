@@ -66,6 +66,7 @@
     $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["taskid"]));
     
     
+    
     if ($fields["categories"] != null) {
       pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $fields["taskid"]));
       
@@ -77,13 +78,13 @@
           $categorieid = fetch_query_params($query, array($categorieid))[0]["id"];
           
           if ($categorieid == null) {
-            pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $opdrachtid));
+            pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $fields["taskid"]));
             
             return array("valid" => false, "code" => "500", "message" => "PSQL statement couldn't be executed because given category doesn't exist!", "error" => "InternalError");  
           }
         }
         
-        $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $opdrachtid,"categorieid" => $categorieid));
+        $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $fields["taskid"],"categorieid" => $categorieid));
       }
 
     }
