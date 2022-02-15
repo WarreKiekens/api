@@ -6,7 +6,7 @@
     // Authorization
     // Everyone can access this resource
 
-    $res = pg_query("SELECT id,naam, (select count(*) from influencercategorie where influencerid = id) as influencercount FROM categorie ORDER BY id");
+    $res = pg_query("SELECT id,naam, (select count(*) from influencercategorie where influencerid = id) as influencercount, (select count(*) from opdrachtcategorie where opdrachtid in (select id from opdracht where isuitgevoerd = false) and categorieid = categorie.id) as opentaskcount FROM categorie ORDER BY id");
     $data = fetch_query_data($res);
 
     if ($data == null) {
