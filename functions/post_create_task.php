@@ -31,7 +31,7 @@
     echo json_encode($opdrachtid);
     
     foreach ($fields["categories"] as $categorieid) {
-      $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => ,"categorieid" => $categorieid));
+      $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $opdrachtid,"categorieid" => $categorieid));
     }
 
 
