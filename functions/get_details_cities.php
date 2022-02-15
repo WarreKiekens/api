@@ -15,7 +15,7 @@
       }
       
     } else {        
-      $res = pg_query("SELECT id,naam,postcode,isactief,isnew,emailadres, (select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount,picture FROM stad ORDER BY id");
+      $res = pg_query("SELECT id,naam,postcode,isactief,isnew,emailadres, (select count(influencerid) from InfluencerStad where stadid = stad.id) as influencercount,picture,nietwinnaarreward FROM stad ORDER BY id");
       $data = fetch_query_data($res);
       
       if ($data == null) {
