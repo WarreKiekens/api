@@ -66,6 +66,14 @@
     $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["taskid"]));
     
     
+    if ($fields["categories"] != null) {
+      pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $fields["taskid"]));
+      
+      foreach ($fields["categories"] as $categorieid) {
+        $result2 = pg_insert($GLOBALS["conn"], "opdrachtcategorie", array("opdrachtid" => $fields["taskid"],"categorieid" => $categorieid));
+      }
+    }
+    
     if (!$result) {
       return array("valid" => false, "code" => 500, "message" => "PSQL statement couldn't be executed!", "error" => "InternalError");
     }     
