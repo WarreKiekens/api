@@ -80,7 +80,10 @@
       $query = "select nietwinnaarreward from stad where id = $1";
       $validatedvalue = fetch_query_params($query, array($GLOBALS["account_id"]))[0]["nietwinnaarreward"];
       
-      echo json_encode(array($winnervalue, $validatedvalue));
+      $query = "select influencerid from post where opdrachtid = $1 and isgoedgekeurd = true;";
+      $validatedids = fetch_query_params($query, array($fields["taskid"]));
+      
+      echo json_encode(array($winnervalue, $validatedvalue, $validatedids));
     }
     
     if ($fields["categories"] != null) {
