@@ -23,7 +23,7 @@
 
     // unset all null values
     foreach($values as $key=>$value){
-      if(is_null($value) || $value == '')
+      if(is_null($value) || $value === '')
           unset($values[$key]);
     }
     
