@@ -65,7 +65,20 @@
     
     $result = pg_update($GLOBALS["conn"], "opdracht", $values, array("id" => $fields["taskid"]));
     
-    
+    // give right influencer points: winner post + validated posts
+    if (is_numeric($fields["winnerid"])) {
+      
+      // Winner
+      $query = "select aantalpuntenwaard from opdracht where id = $1";
+      $winnervalue = fetch_query_params($query, array($fields["taskid"]))[0]["aantalpuntenwaard"];
+      
+      
+      // Validated posts
+      $query = "select nietwinnaarreward from stad where id = $1";
+      $validatedvalue = fetch_query_params($query, array($GLOBALS["account_id"]))[0]["nietwinnaarreward"];
+      
+      echo json_encode(array($winnervalue, $validatedvalue));
+    }
     
     if ($fields["categories"] != null) {
       pg_delete($GLOBALS["conn"], "opdrachtcategorie", array('opdrachtid' => $fields["taskid"]));
