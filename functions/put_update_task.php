@@ -80,8 +80,15 @@
       $query = "select nietwinnaarreward from stad where id = $1";
       $validatedvalue = fetch_query_params($query, array($GLOBALS["account_id"]))[0]["nietwinnaarreward"];
       
-      $query = "select influencerid from post where opdrachtid = $1 and isgoedgekeurd = true and influencerid != $2;";
+      $query = "select influencerid as id from post where opdrachtid = $1 and isgoedgekeurd = true and influencerid != $2;";
       $validatedids = fetch_query_params($query, array($fields["taskid"], $values["winnaarid"]));
+      
+      foreach ($validatedids as $validatedid) {
+        $query = "select SUM(aantalpunten + (select nietwinnaarreward from stad where id = $1)) from influencer where id = $2";
+        $validatedvalue = fetch_query_params($query, array($GLOBALS["account_id"], $validatedid["id"]))[0]["sum"];
+        
+        pg_update($GLOBALS["conn"], "influencer", array("aantalpunten" => $validatedvalue), array("id" => $validatedid["id"])); 
+      }
       
       echo json_encode(array($winnervalue, $validatedvalue, $validatedids));
     }
