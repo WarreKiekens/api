@@ -9,7 +9,7 @@
     }
 
 
-    $res = pg_query("SELECT id,naam, (select count(*) from influencercategorie where influencerid = id) as influencercount, FROM categorie ORDER BY id");
+    $res = pg_query("SELECT id,naam, (select count(*) from influencercategorie where influencerid = id) as influencercount FROM categorie ORDER BY id");
     $overviewCategories = fetch_query_data($res);
     
     $res = pg_query("SELECT (select count(*) from opdracht) as totaltaskcount, (select count(*) from opdracht where isuitgevoerd = false) as opentaskcount, (select count(*) from opdracht where isuitgevoerd = false) as closedtaskcount");
