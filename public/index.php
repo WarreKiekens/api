@@ -35,7 +35,9 @@ include_once("../functions/get_details_tasks.php");
 include_once("../functions/get_details_task.php"); 
 include_once("../functions/get_details_posts_task.php"); 
 include_once("../functions/get_details_posts.php"); 
-include_once("../functions/get_details_admins.php"); 
+include_once("../functions/get_details_admins.php");
+
+include_once("../functions/get_details_overview.php"); 
 
 
   // POST
@@ -380,6 +382,19 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     
     if ($details["valid"]) {
       sendResponse(200, "Admins successfully requested!", $details["data"]);
+    } else {
+      sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
+    }   
+  }
+  
+  // /api/overview...
+  if (strpos($_SERVER["REQUEST_URI"], "/api/overview") === 0) {
+    
+    // /api/admins
+    $details = get_details_overview();
+    
+    if ($details["valid"]) {
+      sendResponse(200, "Overview successfully requested!", $details["data"]);
     } else {
       sendResponse($details["code"], $details["message"], $details["data"], $details["error"]);
     }   
