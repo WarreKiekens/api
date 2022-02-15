@@ -21,7 +21,7 @@
     $data = array(
       "categories" => $overviewCategories,
       "tasks" => $overviewTasks,
-      "influencer" => $overviewInfluencer
+      "influencers" => $overviewInfluencer
     );
 
     if ($data == null) {
