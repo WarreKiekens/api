@@ -90,7 +90,6 @@
         pg_update($GLOBALS["conn"], "influencer", array("aantalpunten" => $validatedvalue), array("id" => $validatedid["id"])); 
       }
       
-      echo json_encode(array($winnervalue, $validatedvalue, $validatedids));
     }
     
     if ($fields["categories"] != null) {
