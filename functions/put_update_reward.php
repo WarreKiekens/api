@@ -13,7 +13,13 @@
     }
     
     if ($fields["type"] == "claim") {
-      // Add
+      // Check if enough points
+      $query = "select SUM(aantalpunten - (select tegoed from reward where id = $1)) from influencer where id = $2";
+      $subtract = fetch_query_params($query, array($fields["rewardid"], $GLOBALS["account_id"]));
+      
+      if ($subtract < 0) {
+        return array("valid" => false, "code" => 505, "message" => "You don't have enough points to claim this reward!", "error" => "InsufficientFunds");
+      }
       
       $values = array(
         "rewardid" => $fields["rewardid"],
@@ -21,6 +27,8 @@
       );
       
       $result = pg_insert($GLOBALS["conn"], "influencerreward", $values);
+      
+      $result2 = pg_update($GLOBALS["conn"], "influencer", array("aantalpunten" => $subtract), array("id" => $GLOBALS["account_id"]));
       
       if (!$result) {
         return array("valid" => false, "code" => 403, "message" => "This resource already exist.", "error" => "ForbiddenContent");
